@@ -1,0 +1,269 @@
+:root {
+  --color-primario: #ff6f00;
+  --color-secundario: #004c99;
+  --color-fondo: #f9f9f9;
+  --color-texto: #333;
+}
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ===== HEADER ===== */
+.header {
+  background: var(--color-secundario);
+  padding: 18px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.menu a:hover,
+.menu a.active {
+  color: var(--color-primario);
+}
+
+/* ===== HERO ===== */
+.hero {
+  padding: 110px 20px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(to right, #004c99cc, #ff6f00cc),
+    url("../img/banner.jpg") center/cover no-repeat;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.hero-content h2 {
+  font-size: 44px;
+  margin-bottom: 18px;
+}
+
+.hero p {
+  font-size: 20px;
+  max-width: 750px;
+  margin: 0 auto;
+  opacity: 0.95;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+/* ===== BOTONES ===== */
+.btn-primary,
+.btn-white,
+.btn-whatsapp {
+  padding: 12px 25px;
+  font-weight: bold;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+/* primario */
+.btn-primary {
+  background: var(--color-primario);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.btn-primary:hover {
+  background: #e66500;
+}
+
+/* blanco */
+.btn-white {
+  background: white;
+  color: var(--color-primario);
+}
+.btn-white:hover {
+  background: #ffe0b2;
+}
+
+/* whatsapp */
+.btn-whatsapp {
+  background: #25D366 !important;
+  color: white !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.btn-whatsapp:hover {
+  background: #1ebe5d !important;
+  transform: translateY(-2px);
+}
+
+/* BTN HERO */
+.btn-hero {
+  padding: 16px 42px !important;
+  font-size: 20px !important;
+  font-weight: 700;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ff6f00, #ff8f33);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+  letter-spacing: 0.5px;
+  transition: all 0.35s ease !important;
+}
+.btn-hero:hover {
+  background: linear-gradient(135deg, #e66500, #ff7a1a);
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 70px 0;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  color: var(--color-secundario);
+  margin-bottom: 40px;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* ===== CARDS BASE ===== */
+.cards {
+  display: grid;
+  gap: 30px;
+}
+
+.card {
+  background: white;
+  padding: 28px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: 0.3s;
+  max-width: 330px;
+  width: 100%;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card i {
+  font-size: 48px;
+  color: var(--color-primario);
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  color: var(--color-secundario);
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: #555;
+}
+
+.card-link {
+  margin-top: 15px;
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--color-primario);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.card-link:hover {
+  background: #e76500;
+}
+
+/* ===================================================================== */
+/*           🎯 LAYOUT CRUZADO (SERVICES) — 100% FUNCIONAL               */
+/* ===================================================================== */
+
+.services-section #services-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  justify-items: center;
+}
+
+/* tarjeta 2 centrada arriba */
+.services-section #services-cards article:nth-child(2) {
+  grid-column: 2;
+}
+
+/* tarjeta 5 centrada abajo */
+.services-section #services-cards article:nth-child(5) {
+  grid-column: 2;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .services-section #services-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .services-section #services-cards article:nth-child(2),
+  .services-section #services-cards article:nth-child(5) {
+    grid-column: auto;
+  }
+}
+
+/* ===== ANIMACIONES ===== */
+.fade-in {
+  animation: fade .8s ease-in-out;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
