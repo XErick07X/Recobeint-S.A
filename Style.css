@@ -298,4 +298,12 @@ footer {
   font-size: 15px;
 }
 
-
+.logo-img {
+    background: white;          /* Fondo blanco para que resalte */
+    padding: 10px 14px;         /* Espacio alrededor */
+    border-radius: 10px;        /* Esquinas redondeadas */
+    height: 70px;               /* Tamaño perfecto para header */
+    width: auto;
+    display: block;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* Sombra profesional */
+}
