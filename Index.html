@@ -7,24 +7,41 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <link rel="stylesheet" href="Style.css" />
+
+<style>
+    /* Ajuste del logo */
+    .logo-img {
+        height: 100px;
+        width: auto;
+        display: block;
+    }
+</style>
+
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="header">
-    <div class="container">
-        <nav class="nav">
-            <h1 class="logo">RECOBEINT</h1>
-            <ul class="menu">
-                <li><a href="index.html" class="active">Inicio</a></li>
-                <li><a href="services.html">Servicios</a></li>
-                <li><a href="about.html">Nosotros</a></li>
-                <li><a href="contact.html">Contacto</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+  <div class="container nav">
 
+      <!-- Izquierda -->
+      <ul class="menu menu-left">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+      </ul>
+
+      <!-- CENTRO (LOGO) -->
+      <a href="index.html">
+        <img src="logo.png" class="logo-img" alt="Logo">
+      </a>
+
+      <!-- Derecha -->
+      <ul class="menu menu-right">
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+
+  </div>
+</header>
 <!-- HERO -->
 <section class="hero">
     <div class="hero-content fade-in">
