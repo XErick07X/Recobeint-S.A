@@ -174,10 +174,13 @@ body {
   margin-bottom: 30px;
 }
 
-/* ===== CARDS BASE ===== */
+/* ===== CARDS BASE PARA OTROS USOS ===== */
 .cards {
-  display: grid;
+  display: flex;               /* Flex para tarjetas generales */
+  justify-content: center;
+  align-items: flex-start;
   gap: 30px;
+  flex-wrap: wrap;
 }
 
 .card {
@@ -230,31 +233,62 @@ body {
 /* ===================================================================== */
 
 .services-section #services-cards {
-  display: grid;
+  display: grid !important; /* IMPORTANTE para sobreescribir flex */
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 150px 220px 150px; /* 3 filas para formar la cruz */
   gap: 30px;
   justify-items: center;
+  align-items: center;
 }
 
-/* tarjeta 2 centrada arriba */
+.services-section #services-cards {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto auto; /* filas con altura automática para ajustar contenido */
+  gap: 30px 20px; /* separación vertical y horizontal */
+  justify-items: center;
+  align-items: start;
+}
+
+.services-section #services-cards article:nth-child(1) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
 .services-section #services-cards article:nth-child(2) {
   grid-column: 2;
+  grid-row: 1;
 }
 
-/* tarjeta 5 centrada abajo */
+.services-section #services-cards article:nth-child(3) {
+  grid-column: 2;
+  grid-row: 2;
+  /* elimina margin-top */
+}
+
+.services-section #services-cards article:nth-child(4) {
+  grid-column: 3;
+  grid-row: 2;
+}
+
 .services-section #services-cards article:nth-child(5) {
   grid-column: 2;
+  grid-row: 3;
 }
+
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .services-section #services-cards {
-    grid-template-columns: 1fr;
+    display: flex !important;
+    flex-direction: column;
+    gap: 20px;
   }
 
-  .services-section #services-cards article:nth-child(2),
-  .services-section #services-cards article:nth-child(5) {
-    grid-column: auto;
+  .services-section #services-cards article {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    margin-top: 0 !important;
   }
 }
 
@@ -298,12 +332,103 @@ footer {
   font-size: 15px;
 }
 
+/* LOGO HEADER */
 .logo-img {
-    background: white;          /* Fondo blanco para que resalte */
-    padding: 10px 14px;         /* Espacio alrededor */
-    border-radius: 10px;        /* Esquinas redondeadas */
-    height: 70px;               /* Tamaño perfecto para header */
-    width: auto;
-    display: block;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* Sombra profesional */
+  background: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  height: 70px;
+  width: auto;
+  display: block;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Estilos para el accordion en About */
+
+.accordion {
+  background-color: var(--color-secundario);
+  color: white;
+  cursor: pointer;
+  padding: 15px 20px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 18px;
+  border-radius: 6px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.accordion:hover,
+.accordion.active {
+  background-color: var(--color-primario);
+}
+
+.panel {
+  padding: 0 20px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 10px;
+}
+
+.panel p, .panel ul {
+  padding: 15px 0;
+  color: var(--color-texto);
+}
+
+.panel ul {
+  list-style-type: disc;
+  padding-left: 30px;
+}
+
+
+/* ACORDEONES */
+.accordion {
+  background-color: var(--color-secundario);
+  color: white;
+  cursor: pointer;
+  padding: 14px 20px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 18px;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+  border-radius: 6px;
+}
+
+.accordion:hover {
+  background-color: var(--color-primario);
+}
+
+.accordion.active {
+  background-color: var(--color-primario);
+}
+
+.panel {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  background-color: #f1f1f1;
+  border-radius: 0 0 6px 6px;
+  margin-bottom: 10px;
+}
+
+.accordion::after {
+  content: '\f078'; /* FontAwesome flecha hacia abajo */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  float: right;
+  transition: transform 0.3s;
+}
+
+.accordion.active::after {
+  transform: rotate(180deg); /* Flecha hacia arriba cuando está activo */
 }
