@@ -68,7 +68,7 @@ body {
   text-align: center;
   color: white;
   background: linear-gradient(to right, #004c99cc, #ff6f00cc),
-    url("logo.jpg") center/cover no-repeat;
+    url("logo.png") center/cover no-repeat;
 }
 
 .hero-content {
