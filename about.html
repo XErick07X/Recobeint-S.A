@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Nosotros - RECOBEINT</title>
 
-<!-- ✅ ETIQUETAS CORREGIDAS PARA GOOGLE -->
+<!-- ✅ ETIQUETAS PARA GOOGLE -->
 <meta name="description" content="Conoce a RECOBEINT, empresa ecuatoriana especializada en gestión de cobranza, recuperación de cartera y servicios de Contact Center. Ética, tecnología y profesionalismo en cada gestión." />
 <meta name="keywords" content="Recobeint, nosotros, quiénes somos, cobranza Ecuador, contact center, recuperación de cartera, misión, visión, valores" />
 <meta name="author" content="Recobeint" />
@@ -18,98 +18,419 @@
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<!-- ✅ FIN DE ETIQUETAS -->
 
-<!-- ETIQUETAS PARA EL ÍCONO (FAVICON) -->
+<!-- ✅ FAVICON -->
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-<!-- FIN DE ETIQUETAS DEL ÍCONO -->
 
+<!-- ✅ ESTILOS E ICONOS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <link rel="stylesheet" href="Style.css" />
+
+<style>
+/* ==============================================
+   ✅ ESTILOS VISUALES MEJORADOS
+============================================== */
+
+/* Fondo general con efecto dinámico */
+.about-section {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f0f5fa 100%);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Elementos decorativos que se mueven */
+.about-section .forma-decorativa {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.06;
+  z-index: 0;
+  animation: flotar 12s ease-in-out infinite alternate;
+}
+.forma1 {
+  width: 450px;
+  height: 450px;
+  background: var(--color-secundario);
+  top: -120px;
+  right: -180px;
+  animation-delay: 0s;
+}
+.forma2 {
+  width: 320px;
+  height: 320px;
+  background: var(--color-primario);
+  bottom: -100px;
+  left: -120px;
+  animation-delay: 4s;
+}
+.forma3 {
+  width: 200px;
+  height: 200px;
+  background: #3498db;
+  top: 50%;
+  left: 10%;
+  animation-delay: 8s;
+}
+
+@keyframes flotar {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(20px, 30px) rotate(15deg); }
+}
+
+/* Encabezado */
+.about-header {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.about-header h2 {
+  font-size: 42px;
+  color: var(--color-secundario);
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.about-header h2::after {
+  content: '';
+  width: 90px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primario), #ff9800);
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.about-header:hover h2::after {
+  width: 140px;
+}
+
+.about-header p {
+  max-width: 850px;
+  margin: 0 auto;
+  font-size: 18px;
+  color: #555;
+  line-height: 1.9;
+}
+
+/* Contenedor de acordeones */
+.acordeones-contenedor {
+  max-width: 950px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Botón de acordeón rediseñado */
+.accordion {
+  background: #ffffff;
+  color: var(--color-secundario);
+  cursor: pointer;
+  padding: 24px 30px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 14px;
+  margin-top: 20px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-left: 5px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.accordion::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 111, 0, 0.05), transparent);
+  transition: width 0.5s ease;
+  z-index: 0;
+}
+
+.accordion:hover::before {
+  width: 100%;
+}
+
+.accordion:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transform: translateY(-3px);
+  border-left-color: var(--color-primario);
+}
+
+.accordion.active {
+  background: #ffffff;
+  border-left-color: var(--color-primario);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+/* Icono izquierdo */
+.accordion i:first-child {
+  margin-right: 15px;
+  color: var(--color-primario);
+  font-size: 24px;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.accordion:hover i:first-child {
+  transform: scale(1.1);
+}
+
+/* Icono de flecha */
+.accordion::after {
+  content: '\f107';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  font-size: 20px;
+  color: #888;
+  transition: all 0.4s ease;
+  z-index: 1;
+}
+
+.accordion.active::after {
+  transform: rotate(180deg);
+  color: var(--color-primario);
+}
+
+/* Panel de contenido */
+.panel {
+  padding: 0 30px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  background: #ffffff;
+  border-radius: 0 0 14px 14px;
+  margin: -8px 0 12px 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border-left: 5px solid transparent;
+  border-left-color: var(--color-primario);
+}
+
+.panel p,
+.panel ul {
+  padding: 28px 0;
+  font-size: 17px;
+  line-height: 1.9;
+  color: #444;
+  margin: 0;
+}
+
+.panel ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.panel ul li {
+  padding: 10px 0 10px 35px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.panel ul li:hover {
+  transform: translateX(5px);
+}
+
+.panel ul li::before {
+  content: '\f00c';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  color: var(--color-primario);
+  font-size: 16px;
+}
+
+/* Animación de entrada al aparecer en pantalla */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .about-header h2 {
+    font-size: 32px;
+  }
+  .accordion {
+    font-size: 18px;
+    padding: 20px 22px;
+  }
+  .panel p, .panel ul {
+    font-size: 16px;
+  }
+  .forma-decorativa {
+    display: none;
+  }
+}
+</style>
 </head>
 <body>
+
 <header class="header">
-  <div class="container">
-    <nav class="nav">
-      <h1 class="logo">RECOBEINT</h1>
-      <ul class="menu">
+  <div class="container nav">
+      <ul class="menu menu-left">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="services.html">Servicios</a></li>
+      </ul>
+
+      <a href="index.html">
+        <img src="logo.png" class="logo-img" alt="Logo RECOBEINT" />
+      </a>
+
+      <ul class="menu menu-right">
         <li><a href="about.html" class="active">Nosotros</a></li>
         <li><a href="contact.html">Contacto</a></li>
       </ul>
-    </nav>
   </div>
 </header>
 
 <section class="section about-section">
+  <!-- Elementos decorativos -->
+  <div class="forma-decorativa forma1"></div>
+  <div class="forma-decorativa forma2"></div>
+  <div class="forma-decorativa forma3"></div>
+
   <div class="container">
-    <h2 class="section-title">¿Quiénes Somos?</h2>
-    <p class="text-center max800">
-      RECOBEINT es una empresa ecuatoriana especializada en la gestión integral de cobranza y servicios de call center, ofreciendo soluciones confiables para la recuperación de cartera.
-    </p>
-    <p class="text-center max800" style="margin-top:20px;">
-      Combinamos tecnología avanzada con un equipo altamente capacitado para garantizar eficiencia, ética y resultados medibles para nuestros clientes.
-    </p>
 
-    <button class="accordion">Misión</button>
-    <div class="panel">
+    <div class="about-header fade-up">
+      <h2>¿Quiénes Somos?</h2>
       <p>
-        Brindar servicios de cobranza preventiva, extrajudicial y judicial, así como call center especializado, asegurando la recuperación eficiente de cartera y fortaleciendo las relaciones comerciales de nuestros clientes.
+        RECOBEINT es una empresa ecuatoriana especializada en la gestión integral de cobranza y servicios de call center, ofreciendo soluciones confiables para la recuperación de cartera.
+      </p>
+      <p style="margin-top: 15px;">
+        Combinamos tecnología avanzada con un equipo altamente capacitado para garantizar eficiencia, ética y resultados medibles para nuestros clientes.
       </p>
     </div>
 
-    <button class="accordion">Visión</button>
-    <div class="panel">
-      <p>
-        Ser la empresa líder en Ecuador en soluciones de cobranza y servicios de call center, reconocida por su innovación tecnológica, excelencia operativa y ética empresarial.
-      </p>
-    </div>
+    <div class="acordeones-contenedor">
 
-    <button class="accordion">Valores</button>
-    <div class="panel">
-      <ul>
-        <li><strong>Ética:</strong> Transparencia y responsabilidad en cada gestión.</li>
-        <li><strong>Compromiso:</strong> Dedicación para alcanzar los objetivos de nuestros clientes.</li>
-        <li><strong>Innovación:</strong> Uso de tecnología avanzada para optimizar procesos.</li>
-        <li><strong>Profesionalismo:</strong> Personal altamente capacitado y orientado a resultados.</li>
-        <li><strong>Trabajo en equipo:</strong> Colaboración interna para entregar un servicio integral.</li>
-      </ul>
-    </div>
+      <button class="accordion fade-up">
+        <i class="fas fa-bullseye"></i> Misión
+      </button>
+      <div class="panel">
+        <p>
+          Brindar servicios de cobranza preventiva, extrajudicial y judicial, así como call center especializado, asegurando la recuperación eficiente de cartera y fortaleciendo las relaciones comerciales de nuestros clientes.
+        </p>
+      </div>
 
-    <button class="accordion">Servicios Destacados</button>
-    <div class="panel">
-      <ul>
-        <li><strong>Cobranza Preventiva:</strong> Recordatorios automáticos y contacto anticipado para reducir cartera vencida.</li>
-        <li><strong>Cobranza Extrajudicial:</strong> Negociación profesional para recuperación de cartera sin procesos legales.</li>
-        <li><strong>Cobranza Judicial:</strong> Acompañamiento legal completo conforme a la normativa vigente.</li>
-        <li><strong>Call Center:</strong> Atención al cliente, soporte, campañas comerciales y encuestas personalizadas.</li>
-        <li><strong>Reportería y Analítica:</strong> Indicadores y dashboards para control total de la gestión.</li>
-      </ul>
-    </div>
+      <button class="accordion fade-up">
+        <i class="fas fa-eye"></i> Visión
+      </button>
+      <div class="panel">
+        <p>
+          Ser la empresa líder en Ecuador en soluciones de cobranza y servicios de call center, reconocida por su innovación tecnológica, excelencia operativa y ética empresarial.
+        </p>
+      </div>
 
-    <button class="accordion">Nuestro Equipo</button>
-    <div class="panel">
-      <p>
-        Nuestro equipo está compuesto por especialistas en finanzas, derecho y atención al cliente, capacitados en técnicas avanzadas de recuperación de cartera y comunicación efectiva. Cada miembro está comprometido con brindar un servicio ético, eficiente y centrado en el cliente.
-      </p>
-    </div>
+      <button class="accordion fade-up">
+        <i class="fas fa-handshake"></i> Valores
+      </button>
+      <div class="panel">
+        <ul>
+          <li><strong>Ética:</strong> Transparencia y responsabilidad en cada gestión.</li>
+          <li><strong>Compromiso:</strong> Dedicación para alcanzar los objetivos de nuestros clientes.</li>
+          <li><strong>Innovación:</strong> Uso de tecnología avanzada para optimizar procesos.</li>
+          <li><strong>Profesionalismo:</strong> Personal altamente capacitado y orientado a resultados.</li>
+          <li><strong>Trabajo en equipo:</strong> Colaboración interna para entregar un servicio integral.</li>
+        </ul>
+      </div>
 
-    <button class="accordion">Tecnología</button>
-    <div class="panel">
-      <p>
-        Utilizamos plataformas de última generación para seguimiento de casos, gestión de llamadas y análisis de datos. Esto nos permite optimizar tiempos, medir resultados y ofrecer reportes detallados a nuestros clientes en tiempo real.
-      </p>
+      <button class="accordion fade-up">
+        <i class="fas fa-concierge-bell"></i> Servicios Destacados
+      </button>
+      <div class="panel">
+        <ul>
+          <li><strong>Cobranza Preventiva:</strong> Recordatorios automáticos y contacto anticipado para reducir cartera vencida.</li>
+          <li><strong>Cobranza Extrajudicial:</strong> Negociación profesional para recuperación de cartera sin procesos legales.</li>
+          <li><strong>Cobranza Judicial:</strong> Acompañamiento legal completo conforme a la normativa vigente.</li>
+          <li><strong>Call Center:</strong> Atención al cliente, soporte, campañas comerciales y encuestas personalizadas.</li>
+          <li><strong>Reportería y Analítica:</strong> Indicadores y dashboards para control total de la gestión.</li>
+        </ul>
+      </div>
+
+      <button class="accordion fade-up">
+        <i class="fas fa-users"></i> Nuestro Equipo
+      </button>
+      <div class="panel">
+        <p>
+          Nuestro equipo está compuesto por especialistas en finanzas, derecho y atención al cliente, capacitados en técnicas avanzadas de recuperación de cartera y comunicación efectiva. Cada miembro está comprometido con brindar un servicio ético, eficiente y centrado en el cliente.
+        </p>
+      </div>
+
+      <button class="accordion fade-up">
+        <i class="fas fa-microchip"></i> Tecnología
+      </button>
+      <div class="panel">
+        <p>
+          Utilizamos plataformas de última generación para seguimiento de casos, gestión de llamadas y análisis de datos. Esto nos permite optimizar tiempos, medir resultados y ofrecer reportes detallados a nuestros clientes en tiempo real.
+        </p>
+      </div>
+
     </div>
 
   </div>
 </section>
 
 <footer>
-  <p>&copy; 2025 RECOBEINT. Todos los derechos reservados.</p>
+  <p>&copy; 2025 RECOBEINT. Todos los derechos reservados. | Guayaquil - Ecuador</p>
 </footer>
 
-<script src="Java.js"></script>
+<!-- ✅ JAVASCRIPT - FUNCIONALIDADES Y EFECTOS -->
+<script>
+// Efecto de aparición al hacer scroll
+const elementosAnimados = document.querySelectorAll('.fade-up');
+
+const observador = new IntersectionObserver((entradas) => {
+  entradas.forEach(entrada => {
+    if (entrada.isIntersecting) {
+      entrada.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+elementosAnimados.forEach(el => observador.observe(el));
+
+// Funcionalidad del acordeón con animación mejorada (CORREGIDA)
+const accordions = document.querySelectorAll(".accordion");
+accordions.forEach((acc, index) => {
+  // Retraso progresivo para que aparezcan uno después de otro
+  acc.style.transitionDelay = `${index * 0.1}s`;
+
+  acc.addEventListener("click", function() {
+    this.classList.toggle("active");
+    const panel = this.nextElementSibling;
+
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      // Se eliminó la inyección de padding para que el scrollHeight sea exacto
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+});
+</script>
+
 </body>
 </html>
