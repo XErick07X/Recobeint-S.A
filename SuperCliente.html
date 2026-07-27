@@ -517,8 +517,8 @@ footer{
           </div>
           
           <div class="link-row">
-            <a href="#"><i class="fas fa-redo"></i> Recuperar Credenciales</a>
-            <a href="#"><i class="fas fa-user-plus"></i> Solicitar Acceso</a>
+            <a href="contact.html"><i class="fas fa-redo"></i> Recuperar Credenciales</a>
+            <a href="contact.html"><i class="fas fa-user-plus"></i> Solicitar Acceso</a>
           </div>
           
           <div class="security-seal">
@@ -552,7 +552,6 @@ footer{
   });
   
   var openIdentityBtn = document.getElementById('openIdentityBtn');
-  var loggedInPanel = document.getElementById('loggedInPanel');
 
   openIdentityBtn.addEventListener('click', function(){
     if (window.netlifyIdentity) {
@@ -562,11 +561,8 @@ footer{
     }
   });
 
-  function checkLoginState(){
-    if (window.netlifyIdentity && window.netlifyIdentity.currentUser()) {
-      loggedInPanel.style.display = 'block';
-      openIdentityBtn.style.display = 'none';
-    }
+  function hasIdentityHashToken(){
+    return /invite_token=|recovery_token=|confirmation_token=/.test(window.location.hash);
   }
 
   function initNetlifyIdentity(){
@@ -574,11 +570,20 @@ footer{
       window.netlifyIdentity.on('login', function(){
         window.location.href = '/Inicio_SuperCliente.html';
       });
-      window.netlifyIdentity.on('logout', function(){
-        loggedInPanel.style.display = 'none';
-        openIdentityBtn.style.display = 'inline-flex';
+
+      window.netlifyIdentity.on('init', function(user){
+        if (user) {
+          window.location.href = '/Inicio_SuperCliente.html';
+          return;
+        }
+
+        if (hasIdentityHashToken()) {
+          window.netlifyIdentity.open('login');
+          window.history.replaceState(null, null, window.location.pathname + window.location.search);
+        }
       });
-      checkLoginState();
+
+      window.netlifyIdentity.init();
     } else {
       setTimeout(initNetlifyIdentity, 100);
     }
