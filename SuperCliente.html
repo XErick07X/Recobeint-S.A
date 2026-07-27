@@ -506,6 +506,7 @@ footer{
           <p style="color:var(--muted);font-size:14px;text-align:center;margin-top:18px;line-height:1.6;">
             Registro cerrado: solo usuarios invitados pueden ingresar. El enlace de invitación de Netlify permite crear la contraseña en el correo.
           </p>
+          <p id="inviteStatus" style="color:#b45309;font-size:13px;text-align:center;margin-top:8px;line-height:1.5;"></p>
           <div class="divider">Acceso Rápido</div>
           
           <!-- BOTONES DECORATIVOS (SE QUITÓ HUELLA, GOOGLE, WINDOWS, LLAVE) -->
@@ -584,11 +585,28 @@ footer{
 
         if (hasIdentityToken()) {
           window.netlifyIdentity.open('signup');
-          window.history.replaceState(null, null, window.location.pathname + window.location.search);
         }
       });
 
       window.netlifyIdentity.init();
+
+      if (hasIdentityToken()) {
+        var status = document.getElementById('inviteStatus');
+        if (status) {
+          status.textContent = 'Token de invitación detectado: se abrirá el registro.';
+        }
+
+        setTimeout(function(){
+          if (window.netlifyIdentity && !window.netlifyIdentity.currentUser()) {
+            window.netlifyIdentity.open('signup');
+          }
+        }, 600);
+      } else {
+        var status = document.getElementById('inviteStatus');
+        if (status) {
+          status.textContent = 'Sin token de invitación detectado. Usa el enlace del correo.';
+        }
+      }
     } else {
       setTimeout(initNetlifyIdentity, 100);
     }
