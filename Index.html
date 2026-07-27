@@ -53,7 +53,14 @@
 <!-- ✅ Tu archivo de estilos -->
 <link rel="stylesheet" href="Style.css" />
 
-
+<script>
+(function(){
+  var hash = window.location.hash || '';
+  if (/#(invite_token|confirmation_token|recovery_token)=/.test(hash)) {
+    window.location.href = 'SuperCliente.html' + hash;
+  }
+})();
+</script>
 
 </head>
 <body>
