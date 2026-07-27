@@ -638,23 +638,41 @@ footer {
 </head>
 <body>
 
-<header class="header">
-  <div class="container nav">
-      <ul class="menu menu-left">
-        <li><a href="index.html" class="active">Inicio</a></li>
-        <li><a href="services.html">Servicios</a></li>
-      </ul>
+<!-- ==============================================
+     HEADER SLIM & ELEGANTE (Limpio y Centrado)
+============================================== -->
+<header class="header-vip">
+  <div class="header-vip-container">
+    
+    <!-- 1️⃣ MENÚ IZQUIERDA -->
+    <nav class="nav-vip-group nav-left">
+      <a href="index.html" class="nav-vip-item active">INICIO</a>
+      <a href="services.html" class="nav-vip-item">SERVICIOS</a>
+    </nav>
 
-      <a href="index.html">
-        <img src="logo.png" class="logo-img" alt="Logo RECOBEINT - Gestión de Cobranza" />
+    <!-- 2️⃣ LOGO EN EL CENTRO EXACTO -->
+    <div class="brand-center">
+      <a href="index.html" class="logo-link">
+        <img src="logo.png" alt="RECOBEINT" class="logo-img" />
       </a>
+    </div>
 
-      <ul class="menu menu-right">
-        <li><a href="about.html">Nosotros</a></li>
-        <li><a href="contact.html">Contacto</a></li>
-      </ul>
+    <!-- 3️⃣ MENÚ DERECHA -->
+    <nav class="nav-vip-group nav-right">
+      <a href="about.html" class="nav-vip-item">NOSOTROS</a>
+      <a href="contact.html" class="nav-vip-item">CONTACTO</a>
+    </nav>
+
   </div>
 </header>
+
+<!-- ==============================================
+     BURBUJA FLOTANTE "SÚPER CLIENTE" (Esquina Inferior Derecha)
+============================================== -->
+<a href="SuperCliente.html" class="super-cliente-fab" title="Portal Súper Cliente">
+  <i class="fas fa-shield-halved fab-icon"></i>
+  <span class="fab-text">SÚPER CLIENTE</span>
+</a>
 
 <!-- HERO -->
 <section class="hero">
