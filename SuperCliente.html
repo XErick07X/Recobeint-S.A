@@ -555,7 +555,11 @@ footer{
 
   openIdentityBtn.addEventListener('click', function(){
     if (window.netlifyIdentity) {
-      window.netlifyIdentity.open('login');
+      if (hasIdentityHashToken()) {
+        window.netlifyIdentity.open('signup');
+      } else {
+        window.netlifyIdentity.open('login');
+      }
     } else {
       alert('Netlify Identity no está disponible aún.');
     }
@@ -568,17 +572,17 @@ footer{
   function initNetlifyIdentity(){
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on('login', function(){
-        window.location.href = '/Inicio_SuperCliente.html';
+        window.location.href = 'Inicio_SuperCliente.html';
       });
 
       window.netlifyIdentity.on('init', function(user){
         if (user) {
-          window.location.href = '/Inicio_SuperCliente.html';
+          window.location.href = 'Inicio_SuperCliente.html';
           return;
         }
 
         if (hasIdentityHashToken()) {
-          window.netlifyIdentity.open('login');
+          window.netlifyIdentity.open('signup');
           window.history.replaceState(null, null, window.location.pathname + window.location.search);
         }
       });
