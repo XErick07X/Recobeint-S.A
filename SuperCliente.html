@@ -568,7 +568,7 @@ footer{
 
   function hasIdentityToken(){
     var tokenSource = (window.location.hash || '') + (window.location.search || '');
-    return /invite_token=|recovery_token=|confirmation_token=/.test(tokenSource);
+    return /(invite_token|recovery_token|confirmation_token|token)=/.test(tokenSource);
   }
 
   function initNetlifyIdentity(){
