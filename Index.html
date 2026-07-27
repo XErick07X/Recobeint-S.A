@@ -44,599 +44,26 @@
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
-<!-- ✅ Librerías necesarias -->
+<!-- ✅ LIBRERÍAS (FontAwesome, OwlCarousel y fuente Sora) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <!-- ✅ Tu archivo de estilos -->
 <link rel="stylesheet" href="Style.css" />
 
-<style>
-/* ==============================================
-   ✅ VARIABLES GLOBALES
-============================================== */
-:root {
-  --color-primario: #ff6f00;
-  --color-secundario: #004c99;
-  --color-oscuro: #1a1a2e;
-  --color-gris: #6c757d;
-  --color-gris-claro: #f8f9fa;
-  --color-blanco: #ffffff;
-  --color-footer: rgb(0, 55, 102); /* Nuevo color para el pie de página */
-  --sombra-suave: 0 4px 20px rgba(0, 0, 0, 0.08);
-  --sombra-media: 0 8px 25px rgba(0, 0, 0, 0.12);
-  --sombra-fuerte: 0 12px 35px rgba(0, 0, 0, 0.18);
-  --transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
 
-/* ==============================================
-   ✅ RESETEO Y BASE
-============================================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  line-height: 1.6;
-  color: var(--color-oscuro);
-  overflow-x: hidden;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* ==============================================
-   ✅ HEADER CON LÍNEA NEGRA DIVISORIA
-============================================== */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 2px solid #000000;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.06);
-  padding: 15px 0;
-  transition: var(--transicion);
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.menu {
-  list-style: none;
-  display: flex;
-  gap: 35px;
-}
-
-.menu a {
-  text-decoration: none;
-  color: var(--color-secundario);
-  font-weight: 500;
-  font-size: 16px;
-  position: relative;
-  transition: var(--transicion);
-}
-
-.menu a::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: var(--color-primario);
-  transition: var(--transicion);
-  border-radius: 2px;
-}
-
-.menu a:hover,
-.menu a.active {
-  color: var(--color-primario);
-}
-
-.menu a:hover::after,
-.menu a.active::after {
-  width: 100%;
-}
-
-.logo-img {
-  height: 60px;
-  transition: var(--transicion);
-}
-
-.logo-img:hover {
-  transform: scale(1.05);
-}
-
-/* ==============================================
-   ✅ HERO
-============================================== */
-.hero {
-  padding: 110px 20px;
-  text-align: center;
-  color: white;
-  background: 
-    linear-gradient(to right, #004c99cc, #ff6f00cc),
-    url("logorb.png") center no-repeat;
-  background-size: 100% 100%, 700px auto;
-}
-
-.hero-content {
-  max-width: 950px;
-  margin: 0 auto;
-  padding: 0 15px;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-content h2 {
-  font-size: 48px;
-  margin-bottom: 22px;
-  line-height: 1.2;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
-
-.hero-content p {
-  font-size: 21px;
-  max-width: 800px;
-  margin: 0 auto 35px;
-  opacity: 0.96;
-  line-height: 1.7;
-}
-
-.btn-hero {
-  padding: 18px 45px !important;
-  font-size: 21px !important;
-  font-weight: 700;
-  border-radius: 50px;
-  background: #ffffff;
-  color: var(--color-secundario) !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  transition: var(--transicion);
-}
-
-.btn-hero:hover {
-  background: var(--color-primario);
-  color: #ffffff !important;
-  transform: translateY(-7px) scale(1.06);
-  box-shadow: 0 15px 35px rgba(255, 111, 0, 0.35);
-}
-
-/* ==============================================
-   ✅ SECCIÓN GENERAL
-============================================== */
-.section {
-  padding: 90px 0;
-  position: relative;
-}
-
-.section-title {
-  font-size: 40px;
-  margin-bottom: 25px;
-  text-align: center;
-  width: 100%;
-  position: relative;
-  display: block;
-}
-
-.section-title::after {
-  content: '';
-  width: 85px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primario), #ff9800);
-  position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 2px;
-}
-
-/* ==============================================
-   ✅ TARJETAS DE SERVICIOS
-============================================== */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 35px;
-  margin-top: 60px;
-}
-
-.card {
-  background: #ffffff;
-  padding: 35px 28px;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-  text-align: center;
-  transition: var(--transicion);
-  border-top: 4px solid transparent;
-  position: relative;
-  overflow: hidden;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 0;
-  background: linear-gradient(180deg, rgba(255, 111, 0, 0.05), transparent);
-  transition: height 0.4s ease;
-}
-
-.card:hover {
-  transform: translateY(-9px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-  border-top-color: var(--color-primario);
-}
-
-.card:hover::before {
-  height: 100%;
-}
-
-.card i {
-  font-size: 52px;
-  color: var(--color-primario);
-  margin-bottom: 22px;
-  transition: var(--transicion);
-}
-
-.card:hover i {
-  transform: scale(1.15) rotate(5deg);
-  color: var(--color-secundario);
-}
-
-.card h3 {
-  font-size: 23px;
-  margin-bottom: 16px;
-  color: var(--color-secundario);
-  transition: color 0.3s ease;
-}
-
-.card:hover h3 {
-  color: var(--color-primario);
-}
-
-.card p {
-  font-size: 17px;
-  color: #555;
-  line-height: 1.8;
-  margin-bottom: 25px;
-}
-
-.card-link {
-  display: inline-block;
-  padding: 11px 26px;
-  background: var(--color-secundario);
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: var(--transicion);
-  box-shadow: 0 3px 10px rgba(0,76,153,0.15);
-}
-
-.card:hover .card-link {
-  background: var(--color-primario);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255,111,0,0.25);
-}
-
-/* ==============================================
-   ✅ ESTILOS PARA LA SECCIÓN DE NÚMEROS
-============================================== */
-.services-stats-premium {
-  background: linear-gradient(135deg, #f8f9fa 0%, #eef2f7 100%);
-  padding: 80px 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.stats-title {
-  font-size: 36px;
-  color: var(--color-secundario);
-  text-align: center;
-  margin-bottom: 50px;
-  font-weight: 700;
-  position: relative;
-}
-
-.stats-title::after {
-  content: '';
-  width: 85px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primario), #ff9800);
-  position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 2px;
-}
-
-.stats-premium-grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-}
-
-.stat-premium-card {
-  background: #ffffff;
-  padding: 40px 25px;
-  border-radius: 16px;
-  box-shadow: var(--sombra-suave);
-  transition: var(--transicion);
-  position: relative;
-  overflow: hidden;
-  border-top: 4px solid transparent;
-}
-
-.stat-premium-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--sombra-media);
-  border-top-color: var(--color-primario);
-}
-
-.stat-icon-wrapper {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 25px;
-  background: linear-gradient(135deg, rgba(255, 111, 0, 0.1), rgba(0, 76, 153, 0.1));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.stat-icon-wrapper i {
-  font-size: 32px;
-  color: var(--color-primario);
-}
-
-.stat-number {
-  font-size: 48px;
-  font-weight: 800;
-  color: var(--color-secundario);
-  margin-bottom: 10px;
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: 18px;
-  color: #555;
-  font-weight: 500;
-}
-
-.glow-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 30% 20%, rgba(255, 111, 0, 0.08) 0%, transparent 50%),
-              radial-gradient(circle at 70% 80%, rgba(0, 76, 153, 0.08) 0%, transparent 50%);
-  z-index: 1;
-}
-
-/* ==============================================
-   ✅ ESTILOS PARA LA SECCIÓN DE ESTRATEGIA Y CUMPLIMIENTO
-============================================== */
-.tech-compliance {
-  background: #fdfdfd;
-  padding: 60px 20px;
-  margin: 0 !important;
-  text-align: center;
-}
-
-.tech-compliance h4 {
-  color: var(--color-secundario);
-  font-size: 24px;
-  margin-bottom: 40px;
-  font-weight: 700;
-  position: relative;
-}
-
-.tech-compliance h4::after {
-  content: '';
-  width: 70px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-primario), #ff9800);
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 2px;
-}
-
-.badge-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.badge-item {
-  background: #ffffff;
-  padding: 12px 22px;
-  border-radius: 50px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--color-secundario);
-  border: 1px solid rgba(0, 76, 153, 0.1);
-  transition: var(--transicion);
-}
-
-.badge-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.12);
-  border-color: rgba(255, 111, 0, 0.2);
-  color: var(--color-primario);
-}
-
-.badge-item i {
-  font-size: 18px;
-  color: var(--color-primario);
-}
-
-/* ==============================================
-   ✅ ESTILOS PARA LA SECCIÓN CTA
-============================================== */
-.cta {
-  background: var(--color-secundario);
-  padding: 60px 20px;
-  text-align: center;
-  color: #ffffff;
-  margin: 0 !important;
-}
-
-.cta h2 {
-  font-size: 32px;
-  margin-bottom: 25px;
-  font-weight: 700;
-}
-
-/* ✅ ANIMACIÓN DEL BOTÓN SOLICITAR INFORMACIÓN */
-.btn-white {
-  display: inline-block;
-  padding: 15px 35px;
-  background: #ffffff;
-  color: var(--color-secundario);
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 50px;
-  font-size: 18px;
-  transition: var(--transicion);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Efecto al pasar el mouse */
-.btn-white:hover {
-  background: #ffffff;
-  color: var(--color-primario);
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
-}
-
-/* Animación continua suave */
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-  70% { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
-}
-
-.btn-white {
-  animation: pulse 3s infinite;
-}
-
-/* ==============================================
-   ✅ ESTILOS PARA EL FOOTER - COLOR ACTUALIZADO
-============================================== */
-footer {
-  background: var(--color-footer); /* rgb(0, 55, 102) */
-  color: #ffffff;
-  text-align: center;
-  padding: 25px 20px;
-  font-size: 15px;
-  margin: 0 !important;
-  border-top: none;
-}
-
-/* ==============================================
-   ✅ ANIMACIÓN DE ENTRADA AL SCROLL
-============================================== */
-.fade-up {
-  opacity: 0;
-  transform: translateY(35px);
-  transition: all 0.7s ease;
-}
-
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ==============================================
-   ✅ RESPONSIVE
-============================================== */
-@media (max-width: 992px) {
-  .hero-content h2 {
-    font-size: 36px;
-  }
-  .hero-content p {
-    font-size: 18px;
-  }
-  .section-title {
-    font-size: 32px;
-  }
-  .stats-title {
-    font-size: 28px;
-  }
-  .stat-number {
-    font-size: 38px;
-  }
-  .cards {
-    grid-template-columns: 1fr;
-  }
-  .badge-container {
-    gap: 15px;
-  }
-  .badge-item {
-    font-size: 14px;
-    padding: 10px 18px;
-  }
-}
-
-@media (max-width: 576px) {
-  .hero {
-    padding: 100px 15px;
-  }
-  .hero-content h2 {
-    font-size: 28px;
-  }
-  .cta h2 {
-    font-size: 26px;
-  }
-  .stats-title {
-    font-size: 24px;
-  }
-  .stat-number {
-    font-size: 32px;
-  }
-  .tech-compliance h4 {
-    font-size: 20px;
-  }
-  .badge-container {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-</style>
 
 </head>
 <body>
+
+<!-- ✅ FONDO ANIMADO TECNOLÓGICO -->
+<div class="tech-bg">
+  <div class="scan-line"></div>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+</div>
 
 <!-- ==============================================
      HEADER SLIM & ELEGANTE (Limpio y Centrado)
@@ -714,7 +141,6 @@ footer {
 
 <!-- ✅ SECCIÓN DE IMPACTO EN NÚMEROS -->
 <div class="services-stats-premium fade-up">
-  <div class="glow-bg"></div>
   <h2 class="stats-title">Números que demuestran nuestros resultados</h2>
   
   <div class="stats-premium-grid">
@@ -785,19 +211,19 @@ footer {
   
   <div class="badge-container">
     <div class="badge-item">
-      <i class="fas fa-shield-halved"></i> 
+      <i class="fas fa-shield-halved"></i>
       <span>Protección de Datos LOPDP</span>
     </div>
     <div class="badge-item">
-      <i class="fas fa-paper-plane"></i> 
+      <i class="fas fa-paper-plane"></i>
       <span>Omnicanalidad: SMS y Mailing Masivo Contable</span>
     </div>
     <div class="badge-item">
-      <i class="fas fa-database"></i> 
+      <i class="fas fa-database"></i>
       <span>Tecnología de Depuración y Optimización de Datos</span>
     </div>
     <div class="badge-item">
-      <i class="fas fa-scale-balanced"></i> 
+      <i class="fas fa-scale-balanced"></i>
       <span>Cumplimiento Normativo SEPS / SB</span>
     </div>
   </div>
@@ -813,42 +239,37 @@ footer {
     <p>&copy; 2025 RECOBEINT. Todos los derechos reservados. | Guayaquil - Ecuador</p>
 </footer>
 
-<!-- ✅ Scripts -->
+<!-- ✅ Scripts (Intactos) -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="Java.js"></script>
 
-<!-- ✅ Inicialización + Animaciones -->
+<!-- ✅ Inicialización + Animaciones - CORREGIDA -->
 <script>
 $(document).ready(function(){
     let owl = $(".owl-carousel");
 
-    // Carrusel inteligente
+    // ✅ CARRUSEL SIEMPRE ACTIVO (en todos los tamaños)
     function activarCarrusel() {
-        if ($(window).width() < 992) {
-            if (!owl.hasClass('owl-loaded')) {
-                owl.owlCarousel({
-                    loop: true,
-                    margin: 25,
-                    autoplay: true,
-                    autoplayTimeout: 3200,
-                    autoplayHoverPause: true,
-                    responsive: {
-                        0: { items: 2 },
-                        480: { items: 3 },
-                        768: { items: 4 }
-                    }
-                });
-            }
-        } else {
-            if (owl.hasClass('owl-loaded')) {
-                owl.trigger('destroy.owl.carousel').removeClass('owl-loaded');
-            }
+        if (!owl.hasClass('owl-loaded')) {
+            owl.owlCarousel({
+                loop: true,
+                margin: 25,
+                autoplay: true,
+                autoplayTimeout: 3200,
+                autoplayHoverPause: true,
+                responsive: {
+                    0: { items: 2 },
+                    480: { items: 3 },
+                    768: { items: 4 },
+                    992: { items: 5 }  // ✅ Escritorio también con carrusel
+                }
+            });
         }
     }
 
     activarCarrusel();
-    $(window).resize(activarCarrusel);
+    // ✅ Eliminamos el $(window).resize que destruía el carrusel
 
     // Animación de aparición al hacer scroll
     const observador = new IntersectionObserver((entradas) => {
