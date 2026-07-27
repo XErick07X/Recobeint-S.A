@@ -555,18 +555,15 @@ footer{
 
   openIdentityBtn.addEventListener('click', function(){
     if (window.netlifyIdentity) {
-      if (hasIdentityHashToken()) {
-        window.netlifyIdentity.open('signup');
-      } else {
-        window.netlifyIdentity.open('login');
-      }
+      window.netlifyIdentity.open('login');
     } else {
       alert('Netlify Identity no está disponible aún.');
     }
   });
 
-  function hasIdentityHashToken(){
-    return /invite_token=|recovery_token=|confirmation_token=/.test(window.location.hash);
+  function hasIdentityToken(){
+    var tokenSource = (window.location.hash || '') + (window.location.search || '');
+    return /invite_token=|recovery_token=|confirmation_token=/.test(tokenSource);
   }
 
   function initNetlifyIdentity(){
@@ -581,8 +578,8 @@ footer{
           return;
         }
 
-        if (hasIdentityHashToken()) {
-          window.netlifyIdentity.open('signup');
+        if (hasIdentityToken()) {
+          window.netlifyIdentity.open('login');
           window.history.replaceState(null, null, window.location.pathname + window.location.search);
         }
       });
