@@ -27,367 +27,71 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <link rel="stylesheet" href="Style.css" />
 
-<style>
-/* ==============================================
-   ✅ ENCABEZADO EXACTO - IGUAL AL INICIO
-============================================== */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 2px solid #000000; /* Línea negra igual que en inicio */
-  box-shadow: 0 2px 15px rgba(0,0,0,0.06);
-  padding: 15px 0;
-  transition: var(--transicion);
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.menu {
-  list-style: none;
-  display: flex;
-  gap: 35px;
-}
-
-/* ✅ COLORES Y EFECTOS DEL MENÚ IGUALES AL INDEX */
-.menu a {
-  text-decoration: none;
-  color: var(--color-secundario); /* Azul principal */
-  font-weight: 500;
-  font-size: 16px;
-  position: relative;
-  transition: var(--transicion);
-}
-
-.menu a::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: var(--color-primario); /* Línea naranja */
-  transition: var(--transicion);
-  border-radius: 2px;
-}
-
-.menu a:hover,
-.menu a.active {
-  color: var(--color-primario); /* Cambia a naranja al pasar o estar activo */
-}
-
-.menu a:hover::after,
-.menu a.active::after {
-  width: 100%;
-}
-
-.logo-img {
-  height: 60px;
-  transition: var(--transicion);
-}
-
-.logo-img:hover {
-  transform: scale(1.05);
-}
-
-/* ==============================================
-   ✅ ESTILOS DE LA SECCIÓN DE SERVICIOS
-============================================== */
-.services-section {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f0f5fa 100%);
-  padding: 90px 0;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Elementos decorativos flotantes sutiles */
-.services-section::before,
-.services-section::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.06;
-  z-index: 0;
-  animation: flotar 18s ease-in-out infinite alternate;
-}
-
-.services-section::before {
-  width: 500px;
-  height: 500px;
-  background: var(--color-secundario);
-  top: -150px;
-  right: -200px;
-}
-
-.services-section::after {
-  width: 350px;
-  height: 350px;
-  background: var(--color-primario);
-  bottom: -120px;
-  left: -150px;
-  animation-delay: 6s;
-}
-
-@keyframes flotar {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  100% { transform: translate(35px, 45px) rotate(15deg); }
-}
-
-/* Encabezado de la sección */
-.services-header {
-  text-align: center;
-  margin-bottom: 70px;
-  position: relative;
-  z-index: 2;
-}
-
-.services-header h2 {
-  font-size: 42px;
-  color: var(--color-secundario);
-  margin-bottom: 20px;
-  position: relative;
-  display: inline-block;
-}
-
-.services-header h2::after {
-  content: '';
-  width: 90px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primario), #ff9800);
-  position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 2px;
-  transition: width 0.5s ease;
-}
-
-.services-header:hover h2::after {
-  width: 160px;
-}
-
-.services-header p {
-  max-width: 800px;
-  margin: 0 auto;
-  font-size: 19px;
-  color: #555;
-  line-height: 1.8;
-}
-
-/* Contenedor de tarjetas */
-.enhanced-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 35px;
-  position: relative;
-  z-index: 2;
-}
-
-/* Tarjeta de servicio con mejor acabado */
-.card {
-  background: #ffffff;
-  padding: 35px 30px;
-  border-radius: 16px;
-  box-shadow: var(--sombra-suave);
-  text-align: center;
-  transition: var(--transicion);
-  border-top: 4px solid transparent;
-  position: relative;
-  overflow: hidden;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 0;
-  background: linear-gradient(180deg, rgba(255, 111, 0, 0.05), transparent);
-  transition: height 0.5s ease;
-}
-
-.card:hover {
-  transform: translateY(-9px);
-  box-shadow: var(--sombra-fuerte);
-  border-top-color: var(--color-primario);
-}
-
-.card:hover::before {
-  height: 100%;
-}
-
-/* Icono con animación mejorada */
-.card-icon {
-  width: 90px;
-  height: 90px;
-  margin: 0 auto 25px;
-  background: linear-gradient(135deg, var(--color-secundario), #005eb8);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 5px 15px rgba(0, 76, 153, 0.2);
-  transition: var(--transicion);
-}
-
-.card:hover .card-icon {
-  background: linear-gradient(135deg, var(--color-primario), #ff9800);
-  transform: scale(1.12) rotate(6deg);
-  box-shadow: 0 8px 22px rgba(255, 111, 0, 0.3);
-}
-
-.card-icon i {
-  font-size: 38px;
-  color: #ffffff;
-}
-
-/* Título y texto */
-.card h3 {
-  font-size: 22px;
-  color: var(--color-secundario);
-  margin-bottom: 18px;
-  font-weight: 600;
-  transition: color 0.4s ease;
-}
-
-.card:hover h3 {
-  color: var(--color-primario);
-}
-
-.card p {
-  font-size: 17px;
-  color: #555;
-  line-height: 1.8;
-  margin-bottom: 28px;
-}
-
-/* Botón de acción más llamativo */
-.card-link {
-  display: inline-block;
-  padding: 12px 30px;
-  background: var(--color-secundario);
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: var(--transicion);
-  box-shadow: 0 3px 10px rgba(0, 76, 153, 0.15);
-  position: relative;
-  overflow: hidden;
-}
-
-.card-link::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.6s ease;
-}
-
-.card:hover .card-link {
-  background: var(--color-primario);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(255, 111, 0, 0.3);
-}
-
-.card:hover .card-link::before {
-  left: 100%;
-}
-
-/* Animación de entrada al hacer scroll */
-.fade-up {
-  opacity: 0;
-  transform: translateY(35px);
-  transition: all 0.8s ease;
-}
-
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Responsive mejorado */
-@media (max-width: 992px) {
-  .services-header h2 {
-    font-size: 36px;
-  }
-  .menu {
-    gap: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .services-section {
-    padding: 70px 0;
-  }
-  .services-header h2 {
-    font-size: 30px;
-  }
-  .enhanced-cards {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  .card {
-    padding: 30px 25px;
-  }
-  .card-icon {
-    width: 75px;
-    height: 75px;
-  }
-  .card-icon i {
-    font-size: 30px;
-  }
-  .menu {
-    gap: 12px;
-    font-size: 14px;
-  }
-}
-</style>
+<!-- ❌ YA NO HAY ESTILOS DENTRO DEL HTML: TODO VA EN Style.css PARA EVITAR CONFLICTOS -->
 </head>
 <body>
 
-<header class="header">
-  <div class="container nav">
-      <ul class="menu menu-left">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="services.html" class="active">Servicios</a></li>
-      </ul>
+<!-- ✅ ENCABEZADO IGUAL AL INICIO (MISMA ESTRUCTURA, MISMO DISEÑO) -->
+<header class="header-vip">
+  <div class="header-vip-container">
+    
+    <!-- MENÚ IZQUIERDA -->
+    <nav class="nav-vip-group nav-left">
+      <a href="index.html" class="nav-vip-item">INICIO</a>
+      <a href="services.html" class="nav-vip-item active">SERVICIOS</a>
+    </nav>
 
-      <a href="index.html">
-        <img src="logo.png" class="logo-img" alt="Logo RECOBEINT" />
+    <!-- LOGO CENTRO -->
+    <div class="brand-center">
+      <a href="index.html" class="logo-link">
+        <img src="logo.png" alt="RECOBEINT" class="logo-img" />
       </a>
+    </div>
 
-      <ul class="menu menu-right">
-        <li><a href="about.html">Nosotros</a></li>
-        <li><a href="contact.html">Contacto</a></li>
-      </ul>
+    <!-- MENÚ DERECHA -->
+    <nav class="nav-vip-group nav-right">
+      <a href="about.html" class="nav-vip-item">NOSOTROS</a>
+      <a href="contact.html" class="nav-vip-item">CONTACTO</a>
+    </nav>
+
   </div>
 </header>
+
+<!-- ✅ FONDO ANIMADO TECNOLÓGICO COMO EN INDEX -->
+<div class="tech-bg">
+  <div class="scan-line"></div>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+</div>
+
+<!-- ✅ BURBUJA FLOTANTE TAMBIÉN EN ESTA PÁGINA -->
+<a href="SuperCliente.html" class="super-cliente-fab" title="Portal Súper Cliente">
+  <i class="fas fa-shield-halved fab-icon"></i>
+  <span class="fab-text">SÚPER CLIENTE</span>
+</a>
 
 <main>
 <section class="section services-section">
   <div class="container">
 
-    <div class="services-header fade-up">
-      <h2>Servicios Profesionales</h2>
-      <p>Soluciones integrales diseñadas para maximizar la recuperación y optimizar tus procesos empresariales en todo Ecuador.</p>
+    <div class="services-hero fade-up">
+      <div class="services-hero-card">
+        <h2 class="section-title">Servicios Profesionales</h2>
+        <p class="section-subtitle">Soluciones integrales diseñadas para maximizar la recuperación y optimizar tus procesos empresariales en todo Ecuador.</p>
+        <div class="services-badges">
+          <div class="service-badge">Atención Multicanal</div>
+          <div class="service-badge">Estrategias Personalizadas</div>
+          <div class="service-badge">Cumplimiento Normativo</div>
+          <div class="service-badge">Reportes Inteligentes</div>
+        </div>
+      </div>
     </div>
 
     <div class="enhanced-cards" id="services-cards">
 
       <!-- 📞 Cobranza Preventiva -->
-      <article class="card fade-up" style="animation-delay: 0.1s;">
-        <div class="card-icon"><i class="fas fa-phone-volume"></i></div>
+      <article class="card fade-up" id="cobranza-preventiva" style="animation-delay: 0.1s;">
+        <i class="fas fa-phone-volume"></i>
         <h3>Cobranza Preventiva</h3>
         <p>Recordatorios estratégicos, segmentación inteligente y contacto anticipado para evitar que la cartera se convierta en deuda vencida.</p>
         <a class="card-link" href="contact.html">Solicitar Demo</a>
@@ -395,7 +99,7 @@
 
       <!-- 🤝 Cobranza Extrajudicial -->
       <article class="card fade-up" style="animation-delay: 0.2s;">
-        <div class="card-icon"><i class="fas fa-handshake-angle"></i></div>
+        <i class="fas fa-handshake-angle"></i>
         <h3>Cobranza Extrajudicial</h3>
         <p>Gestión profesional con enfoque de negociación, respeto al cliente y estrategias efectivas para recuperar valores sin llegar a instancias legales.</p>
         <a class="card-link" href="contact.html">Solicitar Demo</a>
@@ -403,23 +107,23 @@
 
       <!-- ⚖️ Cobranza Judicial -->
       <article class="card fade-up" style="animation-delay: 0.3s;">
-        <div class="card-icon"><i class="fas fa-gavel"></i></div>
+        <i class="fas fa-gavel"></i>
         <h3>Cobranza Judicial</h3>
         <p>Acompañamiento legal completo, asesoría profesional y manejo de procesos conforme a la normativa vigente en Ecuador.</p>
         <a class="card-link" href="contact.html">Asesoría Legal</a>
       </article>
 
       <!-- 🧑‍💼 Call Center -->
-      <article class="card fade-up" style="animation-delay: 0.4s;">
-        <div class="card-icon"><i class="fas fa-headset"></i></div>
+      <article class="card fade-up" id="call-center" style="animation-delay: 0.4s;">
+        <i class="fas fa-headset"></i>
         <h3>Call Center Outsourcing</h3>
         <p>Atención al cliente, soporte, campañas comerciales, encuestas y back office especializado para representar tu marca con calidad.</p>
         <a class="card-link" href="contact.html">Contratar Servicio</a>
       </article>
 
       <!-- 📈 Reportería y Analítica -->
-      <article class="card fade-up" style="animation-delay: 0.5s;">
-        <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+      <article class="card fade-up" id="reportes" style="animation-delay: 0.5s;">
+        <i class="fas fa-chart-line"></i>
         <h3>Reportería y Analítica</h3>
         <p>Indicadores en tiempo real, dashboards ejecutivos, métricas automatizadas y análisis detallado para tomar decisiones seguras.</p>
         <a class="card-link" href="contact.html">Ver Casos</a>
@@ -429,7 +133,6 @@
 
   </div>
 </section>
-
 
 <!-- ✅ SECCIÓN CTA DE CONVERSIÓN -->
 <section class="cta fade-up">
@@ -446,12 +149,11 @@
   <p>&copy; 2025 RECOBEINT. Todos los derechos reservados. | Guayaquil - Ecuador</p>
 </footer>
 
-<!-- ✅ SCRIPTS COMPATIBLES CON TODO EL SITIO -->
+<!-- ✅ SCRIPTS COMPATIBLES -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="Java.js"></script>
 
 <script>
-// Efecto de aparición al hacer scroll
 const observador = new IntersectionObserver((entradas) => {
   entradas.forEach(entrada => {
     if (entrada.isIntersecting) {
