@@ -579,7 +579,7 @@ footer{
         }
 
         if (hasIdentityToken()) {
-          window.netlifyIdentity.open('login');
+          window.netlifyIdentity.open('signup');
           window.history.replaceState(null, null, window.location.pathname + window.location.search);
         }
       });
