@@ -4,10 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Redirigiendo al portal Super Cliente</title>
-  <meta http-equiv="refresh" content="0;url=SuperCliente.html" />
+  <script>
+    var target = 'SuperCliente.html' + window.location.search + window.location.hash;
+    window.location.replace(target);
+  </script>
 </head>
 <body>
   <p>Redirigiendo al portal Super Cliente...</p>
-  <p>Si no te redirige, haz clic <a href="SuperCliente.html">aquí</a>.</p>
+  <p>Si no te redirige, haz clic <a id="manualLink" href="SuperCliente.html">aquí</a>.</p>
+  <script>
+    document.getElementById('manualLink').href = 'SuperCliente.html' + window.location.search + window.location.hash;
+  </script>
 </body>
 </html>
