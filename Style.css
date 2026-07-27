@@ -25,41 +25,187 @@ body {
   margin: auto;
 }
 
-/* ===== HEADER ===== */
-.header {
-  background: var(--color-secundario);
-  padding: 18px 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+/* ==============================================
+   ✅ HEADER SLIM - ALINEACIÓN EN UNA SOLA LÍNEA
+============================================== */
+.header-vip {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+  padding: 12px 0 !important;
+  margin: 0 !important;
 }
 
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.header-vip-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* Simetría perfecta de 3 columnas */
+  align-items: center; /* Todo alineado verticalmente al centro exacto */
 }
 
-.logo {
-  color: white;
-  font-size: 28px;
-  font-weight: bold;
+/* MENÚS (IZQ Y DER) */
+.nav-vip-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 35px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
 }
 
-.menu {
-  list-style: none;
-  display: flex;
-  gap: 20px;
+.nav-left {
+  justify-content: flex-end !important;
+  padding-right: 40px !important;
 }
 
-.menu a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
+.nav-right {
+  justify-content: flex-start !important;
+  padding-left: 40px !important;
 }
 
-.menu a:hover,
-.menu a.active {
-  color: var(--color-primario);
+.nav-vip-item {
+  color: var(--color-secundario, #004c99) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  position: relative !important;
+  padding: 6px 0 !important;
+  transition: color 0.3s ease !important;
+}
+
+.nav-vip-item::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 0% !important;
+  height: 3px !important;
+  background: var(--color-primario, #ff6f00) !important;
+  border-radius: 2px !important;
+  transition: width 0.3s ease !important;
+}
+
+.nav-vip-item:hover,
+.nav-vip-item.active {
+  color: var(--color-primario, #ff6f00) !important;
+}
+
+.nav-vip-item:hover::after,
+.nav-vip-item.active::after {
+  width: 100% !important;
+}
+
+/* LOGO CENTRAL (Limpio y flotante) */
+.brand-center {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.logo-link {
+  display: inline-block !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.logo-img {
+  height: 52px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  transition: transform 0.3s ease !important;
+}
+
+.logo-link:hover .logo-img {
+  transform: scale(1.05) !important;
+}
+
+/* ==============================================
+   🔥 BURBUJA FLOTANTE "SÚPER CLIENTE" (FAB)
+============================================== */
+.super-cliente-fab {
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  z-index: 99999 !important;
+  
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  
+  background: linear-gradient(135deg, #ff6f00 0%, #ff9800 100%) !important;
+  color: #ffffff !important;
+  padding: 14px 24px !important;
+  border-radius: 50px !important;
+  
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  
+  border: 2px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 10px 25px rgba(255, 111, 0, 0.4), 
+              0 0 0 0 rgba(255, 111, 0, 0.5) !important;
+  
+  animation: fabPulse 2.5s infinite !important;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.fab-icon {
+  font-size: 16px !important;
+}
+
+.super-cliente-fab:hover {
+  transform: translateY(-5px) scale(1.05) !important;
+  background: linear-gradient(135deg, #004c99 0%, #0066cc 100%) !important;
+  box-shadow: 0 15px 30px rgba(0, 76, 153, 0.45) !important;
+  color: #ffffff !important;
+}
+
+/* Animación de pulso continuo para llamar la atención suavemente */
+@keyframes fabPulse {
+  0% {
+    box-shadow: 0 10px 25px rgba(255, 111, 0, 0.4), 0 0 0 0 rgba(255, 111, 0, 0.5);
+  }
+  70% {
+    box-shadow: 0 10px 25px rgba(255, 111, 0, 0.4), 0 0 0 15px rgba(255, 111, 0, 0);
+  }
+  100% {
+    box-shadow: 0 10px 25px rgba(255, 111, 0, 0.4), 0 0 0 0 rgba(255, 111, 0, 0);
+  }
+}
+
+/* ADAPTACIÓN MÓVIL */
+@media (max-width: 992px) {
+  .header-vip-container {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .nav-left, .nav-right {
+    justify-content: center !important;
+    padding: 0 !important;
+    gap: 20px !important;
+  }
+  .brand-center {
+    order: -1 !important;
+  }
+  .super-cliente-fab {
+    bottom: 20px !important;
+    right: 20px !important;
+    padding: 12px 18px !important;
+    font-size: 11px !important;
+  }
 }
 
 /* ===== HERO ===== */
