@@ -29,86 +29,282 @@
 
 <style>
 /* ==============================================
-   ✅ ESTILOS VISUALES MEJORADOS
+   ✅ ESTILOS ESPECÍFICOS DE LA PÁGINA NOSOTROS
 ============================================== */
+.about-page {
+  background: transparent;
+}
 
-/* Fondo general con efecto dinámico */
 .about-section {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f0f5fa 100%);
-  padding: 80px 0;
+  padding: 90px 20px 80px;
   position: relative;
   overflow: hidden;
+  background: transparent;
 }
 
-/* Elementos decorativos que se mueven */
-.about-section .forma-decorativa {
+.about-section::before {
+  content: '';
   position: absolute;
-  border-radius: 50%;
-  opacity: 0.06;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 76, 153, 0.06), rgba(255, 111, 0, 0.06));
   z-index: 0;
-  animation: flotar 12s ease-in-out infinite alternate;
-}
-.forma1 {
-  width: 450px;
-  height: 450px;
-  background: var(--color-secundario);
-  top: -120px;
-  right: -180px;
-  animation-delay: 0s;
-}
-.forma2 {
-  width: 320px;
-  height: 320px;
-  background: var(--color-primario);
-  bottom: -100px;
-  left: -120px;
-  animation-delay: 4s;
-}
-.forma3 {
-  width: 200px;
-  height: 200px;
-  background: #3498db;
-  top: 50%;
-  left: 10%;
-  animation-delay: 8s;
 }
 
-@keyframes flotar {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  100% { transform: translate(20px, 30px) rotate(15deg); }
-}
-
-/* Encabezado */
-.about-header {
-  text-align: center;
-  margin-bottom: 60px;
+.about-section > .container {
   position: relative;
   z-index: 2;
 }
 
-.about-header h2 {
-  font-size: 42px;
+.about-hero-card {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 30px;
+  box-shadow: var(--sombra-suave);
+  padding: 50px 40px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.about-hero-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+
+.about-hero-copy {
+  background: rgba(255,255,255,0.92);
+  border-radius: 28px;
+  padding: 38px 32px;
+  border: 1px solid rgba(0,76,153,0.08);
+  box-shadow: var(--sombra-suave);
+}
+
+.about-hero-copy .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-primario);
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.about-hero-copy .section-subtitle {
+  margin: 0 0 18px;
   color: var(--color-secundario);
-  margin-bottom: 20px;
+  font-size: 26px;
+  line-height: 1.3;
+}
+
+.about-hero-copy p {
+  color: #4a5263;
+  line-height: 1.85;
+  margin-bottom: 24px;
+}
+
+.about-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.about-hero-panel {
   position: relative;
-  display: inline-block;
+  background: rgba(12, 22, 47, 0.84);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+  padding: 28px;
+  overflow: hidden;
 }
 
-.about-header h2::after {
+.about-hero-panel::before {
   content: '';
-  width: 90px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primario), #ff9800);
   position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 2px;
-  transition: width 0.4s ease;
+  inset: -20px;
+  background: radial-gradient(circle at top right, rgba(62, 174, 255, 0.24), transparent 28%), radial-gradient(circle at bottom left, rgba(255, 111, 0, 0.18), transparent 25%);
+  pointer-events: none;
 }
 
-.about-header:hover h2::after {
-  width: 140px;
+.about-panel-tag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  color: #f6fbff;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  z-index: 1;
+}
+
+.about-panel-tag i {
+  color: #7ed6ff;
+}
+
+.about-panel-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 1;
+}
+
+.about-panel-stat {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 22px;
+  padding: 22px;
+  color: #f0f7ff;
+}
+
+.about-panel-stat strong {
+  display: block;
+  font-size: 38px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.about-panel-stat span {
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.about-panel-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.about-panel-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  color: #d8e2f2;
+  line-height: 1.8;
+}
+
+.about-panel-list li::before {
+  content: '\f00c';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: #7ed6ff;
+  margin-top: 3px;
+}
+
+.about-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 40px;
+}
+
+.about-tech-card {
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(0,112,212,0.12);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: var(--sombra-suave);
+}
+
+.about-tech-card h4 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  color: var(--color-secundario);
+}
+
+.about-tech-card p {
+  margin: 0;
+  line-height: 1.8;
+  color: #4d5667;
+}
+
+.about-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 40px;
+}
+
+.about-feature-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(243,248,255,0.95) 100%);
+  border: 1px solid rgba(0,76,153,0.12);
+  border-radius: 28px;
+  padding: 30px 26px;
+  box-shadow: var(--sombra-suave);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.about-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px rgba(0, 76, 153, 0.14);
+}
+
+.about-feature-card::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 72px;
+  height: 72px;
+  background: rgba(0, 76, 153, 0.07);
+  border-radius: 24px;
+}
+
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: rgba(0, 112, 212, 0.12);
+  border-radius: 18px;
+  color: var(--color-primario);
+  margin-bottom: 18px;
+  font-size: 20px;
+}
+
+.about-feature-card h4 {
+  font-size: 20px;
+  margin: 0 0 12px;
+  color: var(--color-secundario);
+}
+
+.about-feature-card p {
+  margin: 0;
+  color: #47536b;
+  line-height: 1.8;
+}
+
+.about-tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0,76,153,0.08);
+  color: var(--color-primario);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 14px;
 }
 
 .about-header p {
@@ -119,7 +315,10 @@
   line-height: 1.9;
 }
 
-/* Contenedor de acordeones */
+.about-header p + p {
+  margin-top: 15px;
+}
+
 .acordeones-contenedor {
   max-width: 950px;
   margin: 0 auto;
@@ -127,9 +326,8 @@
   z-index: 2;
 }
 
-/* Botón de acordeón rediseñado */
 .accordion {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.93);
   color: var(--color-secundario);
   cursor: pointer;
   padding: 24px 30px;
@@ -139,7 +337,7 @@
   outline: none;
   font-size: 20px;
   font-weight: 600;
-  border-radius: 14px;
+  border-radius: 16px;
   margin-top: 20px;
   box-shadow: 0 3px 12px rgba(0,0,0,0.07);
   display: flex;
@@ -154,12 +352,10 @@
 .accordion::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0 auto 0 0;
   width: 0%;
-  height: 100%;
-  background: linear-gradient(90deg, rgba(255, 111, 0, 0.05), transparent);
-  transition: width 0.5s ease;
+  background: linear-gradient(90deg, rgba(255, 111, 0, 0.06), transparent);
+  transition: width 0.4s ease;
   z-index: 0;
 }
 
@@ -174,12 +370,11 @@
 }
 
 .accordion.active {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.98);
   border-left-color: var(--color-primario);
   box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
 
-/* Icono izquierdo */
 .accordion i:first-child {
   margin-right: 15px;
   color: var(--color-primario);
@@ -192,7 +387,6 @@
   transform: scale(1.1);
 }
 
-/* Icono de flecha */
 .accordion::after {
   content: '\f107';
   font-family: 'Font Awesome 6 Free';
@@ -208,18 +402,16 @@
   color: var(--color-primario);
 }
 
-/* Panel de contenido */
 .panel {
   padding: 0 30px;
   max-height: 0;
   overflow: hidden;
   transition: all 0.5s ease;
-  background: #ffffff;
-  border-radius: 0 0 14px 14px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0 0 16px 16px;
   margin: -8px 0 12px 0;
   box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-  border-left: 5px solid transparent;
-  border-left-color: var(--color-primario);
+  border-left: 5px solid var(--color-primario);
 }
 
 .panel p,
@@ -256,7 +448,6 @@
   font-size: 16px;
 }
 
-/* Animación de entrada al aparecer en pantalla */
 .fade-up {
   opacity: 0;
   transform: translateY(30px);
@@ -268,126 +459,152 @@
   transform: translateY(0);
 }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
-  .about-header h2 {
-    font-size: 32px;
+  .about-hero-card {
+    padding: 36px 22px;
+  }
+  .about-hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-tech-grid,
+  .about-feature-grid {
+    grid-template-columns: 1fr;
   }
   .accordion {
     font-size: 18px;
     padding: 20px 22px;
   }
-  .panel p, .panel ul {
+  .panel p,
+  .panel ul {
     font-size: 16px;
-  }
-  .forma-decorativa {
-    display: none;
   }
 }
 </style>
 </head>
-<body>
+<body class="about-page">
 
-<header class="header">
-  <div class="container nav">
-      <ul class="menu menu-left">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="services.html">Servicios</a></li>
-      </ul>
+<div class="tech-bg">
+  <div class="scan-line"></div>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+</div>
 
-      <a href="index.html">
-        <img src="logo.png" class="logo-img" alt="Logo RECOBEINT" />
+<header class="header-vip">
+  <div class="header-vip-container">
+    <nav class="nav-vip-group nav-left">
+      <a href="index.html" class="nav-vip-item">INICIO</a>
+      <a href="services.html" class="nav-vip-item">SERVICIOS</a>
+    </nav>
+
+    <div class="brand-center">
+      <a href="index.html" class="logo-link">
+        <img src="logo.png" alt="RECOBEINT" class="logo-img" />
       </a>
+    </div>
 
-      <ul class="menu menu-right">
-        <li><a href="about.html" class="active">Nosotros</a></li>
-        <li><a href="contact.html">Contacto</a></li>
-      </ul>
+    <nav class="nav-vip-group nav-right">
+      <a href="about.html" class="nav-vip-item active">NOSOTROS</a>
+      <a href="contact.html" class="nav-vip-item">CONTACTO</a>
+    </nav>
   </div>
 </header>
 
+<a href="SuperCliente.html" class="super-cliente-fab" title="Portal Súper Cliente">
+  <i class="fas fa-shield-halved fab-icon"></i>
+  <span class="fab-text">SÚPER CLIENTE</span>
+</a>
+
 <section class="section about-section">
-  <!-- Elementos decorativos -->
-  <div class="forma-decorativa forma1"></div>
-  <div class="forma-decorativa forma2"></div>
-  <div class="forma-decorativa forma3"></div>
-
   <div class="container">
-
-    <div class="about-header fade-up">
-      <h2>¿Quiénes Somos?</h2>
+    <div class="about-hero-card fade-up">
+      <h2 class="section-title">¿Quiénes Somos?</h2>
       <p>
         RECOBEINT es una empresa ecuatoriana especializada en la gestión integral de cobranza y servicios de call center, ofreciendo soluciones confiables para la recuperación de cartera.
       </p>
-      <p style="margin-top: 15px;">
+      <p>
         Combinamos tecnología avanzada con un equipo altamente capacitado para garantizar eficiencia, ética y resultados medibles para nuestros clientes.
       </p>
     </div>
 
-    <div class="acordeones-contenedor">
-
-      <button class="accordion fade-up">
-        <i class="fas fa-bullseye"></i> Misión
-      </button>
-      <div class="panel">
-        <p>
-          Brindar servicios de cobranza preventiva, extrajudicial y judicial, así como call center especializado, asegurando la recuperación eficiente de cartera y fortaleciendo las relaciones comerciales de nuestros clientes.
-        </p>
+    <div class="about-hero-grid fade-up">
+      <div>
+        <div class="about-hero-copy">
+          <span class="eyebrow">Ecosistema Súper Cliente</span>
+          <h3 class="section-subtitle">Un modelo híbrido que une inteligencia artificial, datos y atención humana.</h3>
+          <p>Transformamos la cobranza tradicional en una experiencia digital premium, con reportes claros, flujos omnicanal y respuesta continua.</p>
+          <div class="about-hero-actions">
+            <span class="about-tech-badge"><i class="fas fa-robot"></i> Monitoreo activo</span>
+            <span class="about-tech-badge"><i class="fas fa-shield-alt"></i> Gestión segura</span>
+          </div>
+        </div>
       </div>
 
-      <button class="accordion fade-up">
-        <i class="fas fa-eye"></i> Visión
-      </button>
-      <div class="panel">
-        <p>
-          Ser la empresa líder en Ecuador en soluciones de cobranza y servicios de call center, reconocida por su innovación tecnológica, excelencia operativa y ética empresarial.
-        </p>
-      </div>
-
-      <button class="accordion fade-up">
-        <i class="fas fa-handshake"></i> Valores
-      </button>
-      <div class="panel">
-        <ul>
-          <li><strong>Ética:</strong> Transparencia y responsabilidad en cada gestión.</li>
-          <li><strong>Compromiso:</strong> Dedicación para alcanzar los objetivos de nuestros clientes.</li>
-          <li><strong>Innovación:</strong> Uso de tecnología avanzada para optimizar procesos.</li>
-          <li><strong>Profesionalismo:</strong> Personal altamente capacitado y orientado a resultados.</li>
-          <li><strong>Trabajo en equipo:</strong> Colaboración interna para entregar un servicio integral.</li>
+      <div class="about-hero-panel">
+        <span class="about-panel-tag"><i class="fas fa-microchip"></i> Tecnología aplicada</span>
+        <div class="about-panel-stat-grid">
+          <div class="about-panel-stat">
+            <strong>24/7</strong>
+            <span>Supervisión de campañas y atención sin pausa</span>
+          </div>
+          <div class="about-panel-stat">
+            <strong>95%</strong>
+            <span>Adherencia a flujo de contacto digital y humano</span>
+          </div>
+        </div>
+        <ul class="about-panel-list">
+          <li>Automatización inteligente de recordatorios y notificaciones.</li>
+          <li>Panel de control con métricas en tiempo real.</li>
+          <li>Conexión omnicanal: WhatsApp, correo, llamadas y chat.</li>
         </ul>
       </div>
+    </div>
 
-      <button class="accordion fade-up">
-        <i class="fas fa-concierge-bell"></i> Servicios Destacados
-      </button>
-      <div class="panel">
-        <ul>
-          <li><strong>Cobranza Preventiva:</strong> Recordatorios automáticos y contacto anticipado para reducir cartera vencida.</li>
-          <li><strong>Cobranza Extrajudicial:</strong> Negociación profesional para recuperación de cartera sin procesos legales.</li>
-          <li><strong>Cobranza Judicial:</strong> Acompañamiento legal completo conforme a la normativa vigente.</li>
-          <li><strong>Call Center:</strong> Atención al cliente, soporte, campañas comerciales y encuestas personalizadas.</li>
-          <li><strong>Reportería y Analítica:</strong> Indicadores y dashboards para control total de la gestión.</li>
-        </ul>
-      </div>
+    <div class="about-tech-grid fade-up">
+      <article class="about-tech-card">
+        <h4>Conectividad de datos</h4>
+        <p>Integramos información de clientes, inventarios y campañas para tomar decisiones rápidas y precisas.</p>
+      </article>
+      <article class="about-tech-card">
+        <h4>Automatización inteligente</h4>
+        <p>Procesos de contacto se activan de forma automática según el comportamiento y el historial de gestión.</p>
+      </article>
+      <article class="about-tech-card">
+        <h4>Dashboard premium</h4>
+        <p>Reportes visuales, indicadores de recuperación y seguimiento de resultados en un solo panel.</p>
+      </article>
+    </div>
 
-      <button class="accordion fade-up">
-        <i class="fas fa-users"></i> Nuestro Equipo
-      </button>
-      <div class="panel">
-        <p>
-          Nuestro equipo está compuesto por especialistas en finanzas, derecho y atención al cliente, capacitados en técnicas avanzadas de recuperación de cartera y comunicación efectiva. Cada miembro está comprometido con brindar un servicio ético, eficiente y centrado en el cliente.
-        </p>
-      </div>
-
-      <button class="accordion fade-up">
-        <i class="fas fa-microchip"></i> Tecnología
-      </button>
-      <div class="panel">
-        <p>
-          Utilizamos plataformas de última generación para seguimiento de casos, gestión de llamadas y análisis de datos. Esto nos permite optimizar tiempos, medir resultados y ofrecer reportes detallados a nuestros clientes en tiempo real.
-        </p>
-      </div>
-
+    <div class="about-feature-grid fade-up">
+      <article class="about-feature-card">
+        <span class="feature-icon"><i class="fas fa-bullseye"></i></span>
+        <h4>Misión</h4>
+        <p>Crear un ecosistema inteligente de cobranza que reduzca la cartera vencida con tecnología y comunicación humana.</p>
+      </article>
+      <article class="about-feature-card">
+        <span class="feature-icon"><i class="fas fa-eye"></i></span>
+        <h4>Visión</h4>
+        <p>Ser líderes en Ecuador en soluciones de cobranza digital, con una experiencia visual y operativa de clase mundial.</p>
+      </article>
+      <article class="about-feature-card">
+        <span class="feature-icon"><i class="fas fa-hand-holding-heart"></i></span>
+        <h4>Valores</h4>
+        <p>Ética, compromiso, innovación, profesionalismo y trabajo en equipo con un enfoque de alto impacto.</p>
+      </article>
+      <article class="about-feature-card">
+        <span class="feature-icon"><i class="fas fa-star"></i></span>
+        <h4>Servicios Destacados</h4>
+        <p>Servicios orientados a la eficiencia y la tecnología, desde cobranza preventiva hasta reportes de analítica en tiempo real.</p>
+      </article>
+      <article class="about-feature-card">
+        <span class="feature-icon"><i class="fas fa-users"></i></span>
+        <h4>Nuestro Equipo</h4>
+        <p>Un equipo multidisciplinario que combina experiencia en finanzas, derecho y tecnología para resultados superiores.</p>
+      </article>
+      <article class="about-feature-card">
+        <span class="feature-icon"><i class="fas fa-microchip"></i></span>
+        <h4>Tecnología</h4>
+        <p>Plataformas inteligentes, seguimiento omnicanal y reportes visuales que hacen la gestión más rápida y confiable.</p>
+      </article>
     </div>
 
   </div>
@@ -412,21 +629,26 @@ const observador = new IntersectionObserver((entradas) => {
 
 elementosAnimados.forEach(el => observador.observe(el));
 
-// Funcionalidad del acordeón con animación mejorada (CORREGIDA)
+// Funcionalidad del acordeón con animación mejorada
 const accordions = document.querySelectorAll(".accordion");
 accordions.forEach((acc, index) => {
-  // Retraso progresivo para que aparezcan uno después de otro
   acc.style.transitionDelay = `${index * 0.1}s`;
 
   acc.addEventListener("click", function() {
-    this.classList.toggle("active");
-    const panel = this.nextElementSibling;
+    const wasActive = this.classList.contains("active");
 
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      // Se eliminó la inyección de padding para que el scrollHeight sea exacto
-      panel.style.maxHeight = panel.scrollHeight + "px";
+    accordions.forEach(item => {
+      item.classList.remove("active");
+      const panel = item.nextElementSibling;
+      if (panel) panel.style.maxHeight = null;
+    });
+
+    if (!wasActive) {
+      this.classList.add("active");
+      const panel = this.nextElementSibling;
+      if (panel) {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
     }
   });
 });
