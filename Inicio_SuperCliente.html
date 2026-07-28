@@ -38,7 +38,12 @@
       </article>
     </section>
   </div>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
+    if (window.netlifyIdentity && typeof window.netlifyIdentity.init === 'function') {
+      window.netlifyIdentity.init();
+    }
+
     document.getElementById('logoutBtn').addEventListener('click', function() {
       if (window.netlifyIdentity && typeof window.netlifyIdentity.logout === 'function') {
         window.netlifyIdentity.logout();
