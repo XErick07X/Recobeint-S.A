@@ -33,9 +33,18 @@
           <a href="contact.html" style="display:block;padding:18px 22px;border-radius:18px;background:#004c99;color:#fff;text-decoration:none;font-weight:700;text-align:center;">Contactar Soporte</a>
           <a href="about.html" style="display:block;padding:18px 22px;border-radius:18px;background:#ff6f00;color:#fff;text-decoration:none;font-weight:700;text-align:center;">Ver más sobre RECOBEINT</a>
           <a href="index.html" style="display:block;padding:18px 22px;border-radius:18px;background:rgba(0,76,153,.08);color:#0f172a;text-decoration:none;font-weight:700;text-align:center;">Volver al sitio público</a>
+          <button id="logoutBtn" style="display:block;width:100%;padding:18px 22px;border-radius:18px;border:none;background:#e11d48;color:#fff;font-weight:700;cursor:pointer;">Cerrar sesión</button>
         </div>
       </article>
     </section>
   </div>
+  <script>
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+      if (window.netlifyIdentity && typeof window.netlifyIdentity.logout === 'function') {
+        window.netlifyIdentity.logout();
+      }
+      window.location.href = 'SuperCliente.html';
+    });
+  </script>
 </body>
 </html>
