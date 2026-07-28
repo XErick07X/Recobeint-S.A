@@ -40,16 +40,31 @@
   </div>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
-    if (window.netlifyIdentity && typeof window.netlifyIdentity.init === 'function') {
-      window.netlifyIdentity.init();
+    function initLogoutButton() {
+      if (window.netlifyIdentity && typeof window.netlifyIdentity.init === 'function') {
+        window.netlifyIdentity.init();
+      }
+
+      if (window.netlifyIdentity && typeof window.netlifyIdentity.on === 'function') {
+        window.netlifyIdentity.on('logout', function() {
+          window.location.href = 'SuperCliente.html';
+        });
+      }
+
+      document.getElementById('logoutBtn').addEventListener('click', function() {
+        if (window.netlifyIdentity && typeof window.netlifyIdentity.logout === 'function') {
+          window.netlifyIdentity.logout();
+        } else {
+          window.location.href = 'SuperCliente.html';
+        }
+      });
     }
 
-    document.getElementById('logoutBtn').addEventListener('click', function() {
-      if (window.netlifyIdentity && typeof window.netlifyIdentity.logout === 'function') {
-        window.netlifyIdentity.logout();
-      }
-      window.location.href = 'SuperCliente.html';
-    });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLogoutButton);
+    } else {
+      initLogoutButton();
+    }
   </script>
 </body>
 </html>
