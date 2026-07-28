@@ -556,40 +556,10 @@ footer{
   var openIdentityBtn = document.getElementById('openIdentityBtn');
   var inviteStatus = document.getElementById('inviteStatus');
   var queuedOpenMode = null;
-  var initialInviteHash = window.location.hash || '';
-
-  function restoreHashFromStorage(){
-    if ((!window.location.hash || window.location.hash === '#') && window.sessionStorage) {
-      try {
-        var stored = sessionStorage.getItem('netlifyInviteHash') || '';
-        if (stored && stored !== window.location.hash) {
-          history.replaceState(null, '', window.location.pathname + window.location.search + stored);
-          initialInviteHash = stored;
-          return stored;
-        }
-      } catch (e) {}
-    }
-    return window.location.hash || initialInviteHash || '';
-  }
-
-  function getTokenSource(){
-    var hash = restoreHashFromStorage();
-    return hash + (window.location.search || '');
-  }
 
   function hasInviteToken(){
-    return /(?:invite_token|confirmation_token|recovery_token)=/.test(getTokenSource());
-  }
-
-  function cleanEmptyHash(){
-    if (window.location.hash === '#') {
-      var hash = restoreHashFromStorage();
-      if (hash && /(?:invite_token|confirmation_token|recovery_token)=/.test(hash)) {
-        history.replaceState(null, '', window.location.pathname + window.location.search + hash);
-      } else {
-        history.replaceState(null, '', window.location.pathname + window.location.search);
-      }
-    }
+    var tokenSource = (window.location.hash || '') + (window.location.search || '');
+    return /(invite_token)=/.test(tokenSource);
   }
 
   function ensureNetlifyReady(callback){
@@ -609,8 +579,6 @@ footer{
   }
 
   function initNetlifyIdentity(){
-    cleanEmptyHash();
-
     if (openIdentityBtn) {
       openIdentityBtn.addEventListener('click', function(e){
         e.preventDefault();
