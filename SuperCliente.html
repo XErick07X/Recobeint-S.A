@@ -504,7 +504,8 @@ footer{
           </div>
           
           <p style="color:var(--muted);font-size:14px;text-align:center;margin-top:18px;line-height:1.6;">
-            Registro cerrado: solo usuarios invitados pueden ingresar. El enlace de invitación de Netlify permite crear la contraseña en el correo.
+            Registro cerrado: solo usuarios invitados pueden ingresar. No hay registro público.
+            Si tienes una invitación, usa el enlace de Netlify recibido por correo.
           </p>
           <p id="inviteStatus" style="color:#b45309;font-size:13px;text-align:center;margin-top:8px;line-height:1.5;"></p>
           <div class="divider">Acceso Rápido</div>
@@ -556,7 +557,7 @@ footer{
 
   openIdentityBtn.addEventListener('click', function(){
     if (window.netlifyIdentity) {
-      if (hasIdentityToken()) {
+      if (hasInviteToken()) {
         window.netlifyIdentity.open('signup');
       } else {
         window.netlifyIdentity.open('login');
@@ -566,9 +567,9 @@ footer{
     }
   });
 
-  function hasIdentityToken(){
+  function hasInviteToken(){
     var tokenSource = (window.location.hash || '') + (window.location.search || '');
-    return /(invite_token|recovery_token|confirmation_token|token)=/.test(tokenSource);
+    return /(invite_token)=/.test(tokenSource);
   }
 
   function initNetlifyIdentity(){
@@ -583,30 +584,21 @@ footer{
           return;
         }
 
-        if (hasIdentityToken()) {
+        if (hasInviteToken()) {
+          var status = document.getElementById('inviteStatus');
+          if (status) {
+            status.textContent = 'Invitación detectada: crea tu contraseña y accede.';
+          }
           window.netlifyIdentity.open('signup');
+        } else {
+          var status = document.getElementById('inviteStatus');
+          if (status) {
+            status.textContent = 'Sin invitación activa. Usa el botón para iniciar sesión.';
+          }
         }
       });
 
       window.netlifyIdentity.init();
-
-      if (hasIdentityToken()) {
-        var status = document.getElementById('inviteStatus');
-        if (status) {
-          status.textContent = 'Token de invitación detectado: se abrirá el registro.';
-        }
-
-        setTimeout(function(){
-          if (window.netlifyIdentity && !window.netlifyIdentity.currentUser()) {
-            window.netlifyIdentity.open('signup');
-          }
-        }, 600);
-      } else {
-        var status = document.getElementById('inviteStatus');
-        if (status) {
-          status.textContent = 'Sin token de invitación detectado. Usa el enlace del correo.';
-        }
-      }
     } else {
       setTimeout(initNetlifyIdentity, 100);
     }
