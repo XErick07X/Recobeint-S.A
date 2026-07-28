@@ -558,8 +558,22 @@ footer{
   var queuedOpenMode = null;
   var initialInviteHash = window.location.hash || '';
 
+  function restoreHashFromStorage(){
+    if ((!window.location.hash || window.location.hash === '#') && window.sessionStorage) {
+      try {
+        var stored = sessionStorage.getItem('netlifyInviteHash') || '';
+        if (stored && stored !== window.location.hash) {
+          history.replaceState(null, '', window.location.pathname + window.location.search + stored);
+          initialInviteHash = stored;
+          return stored;
+        }
+      } catch (e) {}
+    }
+    return window.location.hash || initialInviteHash || '';
+  }
+
   function getTokenSource(){
-    var hash = window.location.hash || initialInviteHash || '';
+    var hash = restoreHashFromStorage();
     return hash + (window.location.search || '');
   }
 
@@ -569,8 +583,9 @@ footer{
 
   function cleanEmptyHash(){
     if (window.location.hash === '#') {
-      if (initialInviteHash && /(?:invite_token|confirmation_token|recovery_token)=/.test(initialInviteHash)) {
-        history.replaceState(null, '', window.location.pathname + window.location.search + initialInviteHash);
+      var hash = restoreHashFromStorage();
+      if (hash && /(?:invite_token|confirmation_token|recovery_token)=/.test(hash)) {
+        history.replaceState(null, '', window.location.pathname + window.location.search + hash);
       } else {
         history.replaceState(null, '', window.location.pathname + window.location.search);
       }
