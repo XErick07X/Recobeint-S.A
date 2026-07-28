@@ -554,26 +554,47 @@ footer{
   });
   
   var openIdentityBtn = document.getElementById('openIdentityBtn');
-
-  openIdentityBtn.addEventListener('click', function(){
-    if (window.netlifyIdentity) {
-      if (hasInviteToken()) {
-        window.netlifyIdentity.open('signup');
-      } else {
-        window.netlifyIdentity.open('login');
-      }
-    } else {
-      alert('Netlify Identity no está disponible aún.');
-    }
-  });
+  var inviteStatus = document.getElementById('inviteStatus');
+  var queuedOpenMode = null;
 
   function hasInviteToken(){
     var tokenSource = (window.location.hash || '') + (window.location.search || '');
-    return /(invite_token)=/.test(tokenSource);
+    return /(?:invite_token|confirmation_token|recovery_token)=/.test(tokenSource);
+  }
+
+  function cleanEmptyHash(){
+    if (window.location.hash === '#') {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }
+
+  function ensureNetlifyReady(callback){
+    if (window.netlifyIdentity && typeof window.netlifyIdentity.init === 'function') {
+      callback();
+    } else {
+      setTimeout(function(){ ensureNetlifyReady(callback); }, 150);
+    }
+  }
+
+  function openNetlifyMode(mode){
+    if (window.netlifyIdentity && typeof window.netlifyIdentity.open === 'function') {
+      window.netlifyIdentity.open(mode);
+    } else {
+      queuedOpenMode = mode;
+    }
   }
 
   function initNetlifyIdentity(){
-    if (window.netlifyIdentity) {
+    cleanEmptyHash();
+
+    if (openIdentityBtn) {
+      openIdentityBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        openNetlifyMode(hasInviteToken() ? 'signup' : 'login');
+      });
+    }
+
+    ensureNetlifyReady(function(){
       window.netlifyIdentity.on('login', function(){
         window.location.href = 'Inicio_SuperCliente.html';
       });
@@ -584,24 +605,24 @@ footer{
           return;
         }
 
+        if (inviteStatus) {
+          inviteStatus.textContent = hasInviteToken()
+            ? 'Invitación detectada: crea tu contraseña y accede.'
+            : 'Sin invitación activa. Usa el botón para iniciar sesión.';
+        }
+
         if (hasInviteToken()) {
-          var status = document.getElementById('inviteStatus');
-          if (status) {
-            status.textContent = 'Invitación detectada: crea tu contraseña y accede.';
-          }
-          window.netlifyIdentity.open('signup');
-        } else {
-          var status = document.getElementById('inviteStatus');
-          if (status) {
-            status.textContent = 'Sin invitación activa. Usa el botón para iniciar sesión.';
-          }
+          openNetlifyMode('signup');
         }
       });
 
       window.netlifyIdentity.init();
-    } else {
-      setTimeout(initNetlifyIdentity, 100);
-    }
+
+      if (queuedOpenMode) {
+        window.netlifyIdentity.open(queuedOpenMode);
+        queuedOpenMode = null;
+      }
+    });
   }
 
   initNetlifyIdentity();
