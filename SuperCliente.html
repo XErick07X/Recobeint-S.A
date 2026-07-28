@@ -556,15 +556,24 @@ footer{
   var openIdentityBtn = document.getElementById('openIdentityBtn');
   var inviteStatus = document.getElementById('inviteStatus');
   var queuedOpenMode = null;
+  var initialInviteHash = window.location.hash || '';
+
+  function getTokenSource(){
+    var hash = window.location.hash || initialInviteHash || '';
+    return hash + (window.location.search || '');
+  }
 
   function hasInviteToken(){
-    var tokenSource = (window.location.hash || '') + (window.location.search || '');
-    return /(?:invite_token|confirmation_token|recovery_token)=/.test(tokenSource);
+    return /(?:invite_token|confirmation_token|recovery_token)=/.test(getTokenSource());
   }
 
   function cleanEmptyHash(){
     if (window.location.hash === '#') {
-      history.replaceState(null, '', window.location.pathname + window.location.search);
+      if (initialInviteHash && /(?:invite_token|confirmation_token|recovery_token)=/.test(initialInviteHash)) {
+        history.replaceState(null, '', window.location.pathname + window.location.search + initialInviteHash);
+      } else {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
     }
   }
 
