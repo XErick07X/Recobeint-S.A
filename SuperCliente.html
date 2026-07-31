@@ -556,10 +556,20 @@ footer{
   var openIdentityBtn = document.getElementById('openIdentityBtn');
   var inviteStatus = document.getElementById('inviteStatus');
   var queuedOpenMode = null;
+  var originalHash = window.location.hash || '';
+  var originalSearch = window.location.search || '';
+
+  function getInviteSource(){
+    var source = originalHash || originalSearch || '';
+    if (!/(?:invite_token|token)=/.test(source) && window.location.href.indexOf('%23invite_token') !== -1) {
+      source = decodeURIComponent(window.location.href);
+    }
+    return source;
+  }
 
   function hasInviteToken(){
-    var tokenSource = (window.location.hash || '') + (window.location.search || '');
-    return /(invite_token)=/.test(tokenSource);
+    var source = getInviteSource();
+    return /(?:invite_token|token)=/.test(source) || source === '#';
   }
 
   function ensureNetlifyReady(callback){
@@ -604,6 +614,11 @@ footer{
         }
 
         if (hasInviteToken()) {
+          openNetlifyMode('signup');
+        }
+
+        // Si Netlify ya limpió el hash y solo queda '#', mantenemos el flujo de invitación.
+        if (window.location.hash === '#' && originalHash === '#') {
           openNetlifyMode('signup');
         }
       });
