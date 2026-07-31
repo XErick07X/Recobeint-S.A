@@ -1,2 +1,3 @@
 # Eliminada regla de redirect que forzaba el regreso al login desde Inicio_SuperCliente.html
 # /Inicio_SuperCliente.html  /SuperCliente.html  302!  Role=member
+/supercliente  /SuperCliente.html  200
