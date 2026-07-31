@@ -57,7 +57,7 @@
 (function(){
   var hash = window.location.hash || '';
   if (hash && /(?:invite_token|confirmation_token|recovery_token)=/.test(hash)) {
-    window.location.replace('SuperCliente.html' + hash);
+    window.location.replace('/supercliente' + hash);
   }
 })();
 </script>
