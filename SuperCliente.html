@@ -559,17 +559,61 @@ footer{
   var originalHash = window.location.hash || '';
   var originalSearch = window.location.search || '';
 
-  function getInviteSource(){
-    var source = originalHash || originalSearch || '';
-    if (!/(?:invite_token|token)=/.test(source) && window.location.href.indexOf('%23invite_token') !== -1) {
-      source = decodeURIComponent(window.location.href);
+  function normalizeIdentityUrl(){
+    var href = window.location.href || '';
+    if (href.indexOf('%23invite_token') !== -1 || href.indexOf('%23token') !== -1 || href.indexOf('%23recovery_token') !== -1 || href.indexOf('%23confirmation_token') !== -1) {
+      var decoded = decodeURIComponent(href);
+      if (decoded !== href && (decoded.indexOf('#invite_token') !== -1 || decoded.indexOf('#token') !== -1 || decoded.indexOf('#recovery_token') !== -1 || decoded.indexOf('#confirmation_token') !== -1)) {
+        window.location.replace(decoded);
+        return true;
+      }
     }
+    return false;
+  }
+
+  if (normalizeIdentityUrl()) {
+    return;
+  }
+
+  function getIdentitySource(){
+    var source = originalHash || originalSearch || '';
+    var href = window.location.href || '';
+    var path = window.location.pathname || '';
+
+    if (!/(?:invite_token|token|recovery_token|confirmation_token)=/.test(source)) {
+      if (href.indexOf('%23invite_token') !== -1 || path.indexOf('%23invite_token') !== -1) {
+        source = decodeURIComponent(href);
+      } else if (href.indexOf('%23recovery_token') !== -1 || path.indexOf('%23recovery_token') !== -1) {
+        source = decodeURIComponent(href);
+      } else if (href.indexOf('%23confirmation_token') !== -1 || path.indexOf('%23confirmation_token') !== -1) {
+        source = decodeURIComponent(href);
+      } else if (href.indexOf('invite_token=') !== -1 || href.indexOf('token=') !== -1 || href.indexOf('recovery_token=') !== -1 || href.indexOf('confirmation_token=') !== -1) {
+        source = href;
+      } else if (path.indexOf('#invite_token') !== -1 || path.indexOf('#recovery_token') !== -1 || path.indexOf('#confirmation_token') !== -1) {
+        source = path;
+      }
+    }
+
     return source;
   }
 
-  function hasInviteToken(){
-    var source = getInviteSource();
-    return /(?:invite_token|token)=/.test(source) || source === '#';
+  function getIdentityTokenType(){
+    var source = getIdentitySource();
+    if (/(?:invite_token)=/.test(source)) return 'invite';
+    if (/(?:recovery_token)=/.test(source)) return 'recovery';
+    if (/(?:confirmation_token)=/.test(source)) return 'confirmation';
+    if (/(?:token)=/.test(source)) return 'token';
+    return null;
+  }
+
+  function hasIdentityToken(){
+    return !!getIdentityTokenType() || originalHash === '#';
+  }
+
+  function getOpenMode(){
+    var tokenType = getIdentityTokenType();
+    if (tokenType === 'invite') return 'signup';
+    return 'login';
   }
 
   function ensureNetlifyReady(callback){
@@ -592,7 +636,7 @@ footer{
     if (openIdentityBtn) {
       openIdentityBtn.addEventListener('click', function(e){
         e.preventDefault();
-        openNetlifyMode(hasInviteToken() ? 'signup' : 'login');
+        openNetlifyMode(getOpenMode());
       });
     }
 
@@ -608,18 +652,23 @@ footer{
         }
 
         if (inviteStatus) {
-          inviteStatus.textContent = hasInviteToken()
+          var tokenType = getIdentityTokenType();
+          inviteStatus.textContent = tokenType === 'invite'
             ? 'Invitación detectada: crea tu contraseña y accede.'
-            : 'Sin invitación activa. Usa el botón para iniciar sesión.';
+            : tokenType === 'recovery'
+              ? 'Recuperación detectada: restablece tu contraseña.'
+              : tokenType === 'confirmation'
+                ? 'Confirmación detectada: completa tu registro.'
+                : 'Sin invitación activa. Usa el botón para iniciar sesión.';
         }
 
-        if (hasInviteToken()) {
-          openNetlifyMode('signup');
+        if (hasIdentityToken()) {
+          openNetlifyMode(getOpenMode());
         }
 
-        // Si Netlify ya limpió el hash y solo queda '#', mantenemos el flujo de invitación.
+        // Si Netlify ya limpió el hash y solo queda '#', mantenemos el flujo de autenticación.
         if (window.location.hash === '#' && originalHash === '#') {
-          openNetlifyMode('signup');
+          openNetlifyMode(getOpenMode());
         }
       });
 
